@@ -1,0 +1,116 @@
+{% include 'sitio/top_of_page.html' %}
+
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.worker.js"></script>
+  
+</head>
+
+<body>
+  {% block content %}
+  <div class="row" style="padding: 10px;">
+    <div class="col-md-12">
+      <div class="p-5 mb-4 rounded-3" style="background-color: rgba(255, 255, 255, 0.9);">
+        <h1 class="text-center display-3">{{ libro[1] }}</h1>
+        <div class="row">
+          <!-- Contenedor Izquierda -->
+          <div class="col-md-4 p-0 mb-4 rounded-3 d-flex justify-content-center align-items-center">
+            <img src="{{ url_for('static', filename='archivos/imagenes/' + libro[2]) }}" alt="{{ libro[1] }}" class="img-fluid img-cover">
+          </div>               
+          <!-- Contenedor Derecha -->
+          <div class="col-md-8 p-5 mb-4 rounded-3 border overflow-hidden">
+            <p class="lead"><strong class="bold-text">Autor:</strong>  
+                {% for autor in autores %}
+                    {% if libro[6] == autor[0] %}
+                        {{ autor[1] }} {{ autor[2] }}  <br>
+                    {% endif %}
+                {% endfor %}
+            </p>
+            <p class="lead"><strong class="bold-text">Year:</strong> {{ libro[4] }}</p>
+            <p class="lead"><strong class="bold-text">URL:</strong> <a href="{{ libro[3] }}" target="_blank">{{ libro[1] }}</a></p>
+            {% if libro[7] %}
+                <p class="lead"><strong class="bold-text">Description:</strong> {{ libro[7] }}</p>
+            {% endif %}
+          </div>
+          <!-- Contenedor de 3 filas -->
+          <div class="row">
+            {% if libro[9] %}
+              {% set col_width = '6' %}
+              <div class="col-md-{{ col_width }} p-5 mb-4 rounded-3 position-relative">
+                  <iframe src="{{ url_for('static', filename='archivos/pdf/' + libro[9]) }}" alt="{{ libro[9] }}" class="h-100 w-100"></iframe>
+              </div>
+            {% endif %}
+            {% if libro[10] %}
+                <div class="col-md-4 p-5 mb-4 rounded-3 position-relative">
+                    <img src="{{ url_for('static', filename='archivos/imagenes/' + libro[10]) }}" alt="{{ libro[10] }}" class="img-fluid w-100">
+                </div>
+            {% endif %}   
+            {% if libro[8] %}
+                <div class="col-md-4 p-5 mb-4 rounded-3 position-relative">
+                    <video controls class="w-100 h-100">
+                        <source src="{{ url_for('static', filename='archivos/videos/' + libro[8]) }}" type="video/mp4">
+                    </video>
+                </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- ========== Bloque para los comentarios ========== -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="p-5 mb-4 rounded-3" style="background-color: rgba(255, 255, 255, 0.9);">
+          <h2 class="text-center">Comentarios</h2>
+          <ul class="list-group">
+            {% if user_id is not none %}
+              {% if comentarios %}
+                <ul class="list-group">
+                  {% for comentario in comentarios %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center" >
+                      <span style="color: rgb(53, 104, 143); text-transform: uppercase; font-weight: bold;">{{ comentario[2] }}</span>
+                      <span style="margin: 10px;">{{ comentario[1] }}</span>
+                      <form action="/admin/books/comentarios/{{ comentario[0] }}/eliminar" method="post" style="display: inline;">
+                        <input type="hidden" name="user_id" value="{{ user_id }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                      </form>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p>No hay comentarios disponibles.</p>
+              {% endif %}
+            {% endif %}
+          </ul>
+          <!-- Comentarios -->
+          <form action="/admin/books/{{ libro[0] }}/comentarios" method="post" class="mt-3">
+            <div class="form-group">
+              <label for="comentario">Add comment:</label>
+              <textarea id="comentario" name="comentario" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn">Comment</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {% endblock %}
+</body>
+</html>
+
+
+
+

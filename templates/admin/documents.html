@@ -1,0 +1,44 @@
+
+<div class="col-md-12 mx-auto text-center">
+    <div style="border: 1px solid #c6e1f5; padding: 15px;">
+        Here you can view the uploaded books, modify them, delete them, or access them directly.
+    </div>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered w-100">
+            <thead class="text-center" style="background-color: rgb(19, 19, 19); color: aliceblue;">
+                <tr>
+                    <th scope="col" class="font-weight-bold fs-4 ">Actions</th>
+                    <th scope="col" class="font-weight-bold fs-4">Title</th>
+                    <th scope="col" class="font-weight-bold fs-4">Author</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                {% for libro in libros %}
+                    <tr>
+                        <td class="d-flex align-items-center justify-content-center">
+                            <form action="/admin/books/delete" method="post">
+                                <input value="{{libro[0]}}" type="hidden" name="txtID" id="txtID">
+                                <button type="submit" class="btn btn-outline-dark delete-btn me-2">Delete</button>
+                            </form>
+                            <a href="/admin/books/{{ libro[0] }}" class="btn btn-outline-dark info-btn me-2">Books</a>
+                            <a href="/admin/books/{{ libro[0] }}/editar" class="btn btn-outline-dark info-btn">Editar</a>
+                        </td>
+                        
+                        <td class="align-middle">{{ libro[1] }}</td>
+                        
+                        <td class="align-middle">
+                            {% set autor_encontrado = false %}
+                            {% for autor in autores %}
+                                {% if libro[6] == autor[0] %}
+                                    {{ autor[1] }} {{ autor[2] }}  <br>
+                                    {% set autor_encontrado = true %}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

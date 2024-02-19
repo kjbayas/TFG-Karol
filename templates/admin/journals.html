@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Journals</title>
+    <!-- Estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table-fixed {
+            table-layout: fixed;
+            width: 100%;
+        }
+        .table td {
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        {% include 'admin/top_of_page.html' %}
+
+        <div class="row">
+            <div class="col-md-12 mt-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center">INSTRUCTIONS</h1>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span style="color: rgb(255, 0, 93); font-weight: bold;">ATTENTION:</span> Before uploading the information, we kindly request that you be careful and attentive to the provided data and that the recommended specifications are met.
+                            </li>
+                            <li>Sections marked with asterisks are mandatory.</li>
+                            <li>For the cover image, it is recommended to use images of 720 x 775 pixels.</li>
+                            <li>Please verify that the author's first and last name are spelled correctly.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+                <div class="container ">
+                    <div class="container-fluid ">
+                        <div class="text-center">
+                            <h1 class="mt-5">Add Journal</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <form action="/admin/journals/guardar" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="txtTitle" class="form-label fs-4 fw-bold"><span style="color: rgb(199, 17, 17);">**</span>Title:</label>
+                                <input type="text" class="form-control" id="txtTitle" name="title" required maxlength="30">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="txtYear" class="form-label fs-4 fw-bold"><span style="color: rgb(199, 17, 17);">**</span>Year:</label>
+                                <select id="txtYear" name="year" class="form-select">
+                                    <option value="">Select a year.</option>
+                                    {% for year in range(2024, 1849, -1) %}
+                                        <option value="{{ year }}">{{ year }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="txtLink" class="form-label fs-4 fw-bold "><span style="color: rgb(199, 17, 17);">**</span>Link:</label>
+                                <input type="text" class="form-control" id="txtLink" name="link" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtCover" class="form-label fs-4 fw-bold "><span style="color: rgb(199, 17, 17);">**</span>Cover Image:</label>
+                                <input type="file" class="form-control-file" id="txtCover" name="cover" required accept="image/*">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary float-right">Add</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+        </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="mt-5">Journals</h2>
+                    </div>
+                    {% if mensaje_error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ mensaje_error }}
+                        </div>
+                    {% endif %}
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-fixed mt-3">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Year</th>
+                                    <th>Link</th>
+                                    <th>Cover Image</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                {% for journal in journals %}
+                                <tr>
+                                    <td>{{ journal[1] }}</td>
+                                    <td>{{ journal[2] }}</td>
+                                    <td><a href="{{ journal[3] }}" target="_blank">{{ journal[3] }}</a></td>
+                                    <td><img src="{{ url_for('static', filename='archivos/imagenes/' + journal[4]) }}" alt="Cover" style="max-width: 100px;"></td>
+                                    <td>
+                                        <form action="/admin/journals/delete" method="post" style="display: inline;">
+                                            <input type="hidden" name="journal_id" value="{{ journal[0] }}">
+                                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

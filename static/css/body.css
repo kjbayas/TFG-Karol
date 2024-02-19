@@ -1,0 +1,54 @@
+
+.custom-card {
+    background-color: rgba(255, 255, 255, 0.897);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.custom-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.custom-card p {
+    font-size: 16px;
+}
+
+.custom-col {
+    background-color: rgba(118, 59, 59, 0.897); 
+    border-radius: 10px;
+}
+
+
+#calendar .fc-event {
+    background-color: #867a83;
+    border-color: #574f8d;
+}
+
+/* Estilos para los días en el calendario */
+#calendar .fc-day {
+    background-color: #ffffff;
+}
+/* Estilo para el fondo de la fila del encabezado */
+#calendar .fc-head {
+    background-color: #d5d7f0; /* Cambia el fondo de la fila del encabezado a blanco */
+}
+#calendar .fc-center h2{
+    color: rgb(9, 9, 64);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#calendar .fc-left button{
+    color: rgb(62, 24, 37);
+    font-size: 15px;
+    text-transform: uppercase;
+}
+#calendar .fc-right button{
+    color: rgb(62, 24, 37);
+    font-size: 15px;
+    text-transform: uppercase;
+}
+

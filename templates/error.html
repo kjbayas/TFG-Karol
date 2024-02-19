@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'sitio/top_of_page.html' %}
+    <div class="container-fluid" style="padding-top: 20px;">
+        <div class="col-md-12 text-center">
+            <div class="p-5 mb-4 rounded-3" style="background-color: rgba(255, 255, 255, 0.9);">
+                <h1>Error</h1>
+                <p>Ha ocurrido un error en la aplicación.</p>
+                <p style="color: rgb(140, 0, 255);">{{ error_message }}</p>
+                <a href="{{ back_url }}" class="btn btn-primary">Regresar</a>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

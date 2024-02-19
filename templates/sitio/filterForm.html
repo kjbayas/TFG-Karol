@@ -1,0 +1,40 @@
+<form id="filterForm" action="/sitio/busqueda" method="GET" style="display: none;" class="d-flex">
+    <div class="container-fluid d-flex flex-wrap justify-content-left">
+        
+        <div class="mb-3 me-3">
+            <label for="selectArea">Select Area:</label>
+            <select id="selectArea" name="area" class="form-select">
+                <option value="">All Areas</option>
+                <option value="CONSTRUCCIÓN">CONSTRUCCIÓN</option>
+                <option value="EXPRESIÓN GRÁFICA">EXPRESIÓN GRÁFICA</option>
+                <option value="URBANISMO">URBANISMO</option>
+                <option value="PROYECTOS">PROYECTOS</option>
+                <option value="ESTRUCTURAS">ESTRUCTURAS</option>
+                <option value="INSTALACIONES">INSTALACIONES</option>
+            </select>
+        </div>
+        <div class="mb-3 me-3">
+            <label for="selectAuthor">Select Author:</label>
+            <select id="selectAuthor" name="author" class="form-select">
+                <option value="">All Authors</option>
+                {% for author in autores %}
+                    <option value="{{ author[0] }}">{{ author[1] }} {{ author[2] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 me-3">
+            <label for="selectYear">Select Year:</label>
+            <select id="selectYear" name="year" class="form-select">
+                <option value="">All Years</option>
+                {% for year in range(2024, 1849, -1) %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="m-3">
+            <button type="submit" class="btn btn-primary ">Filter</button>
+        </div>
+    </div>
+
+</form>
+

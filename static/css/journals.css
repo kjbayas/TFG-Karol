@@ -1,0 +1,54 @@
+body {
+    background-image: url('/static/archivos/fondos/fondo8.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.card {
+    height: 100%;
+    border-radius: 5px;
+}
+.card-img-top {
+    width: auto;
+    height: 400px; 
+    object-fit: cover; 
+    filter: grayscale(90%);
+    transition: filter 0.3s ease-in-out; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.card-img-top:hover {
+    filter: grayscale(0%);
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.centered h1 {
+    font-size: 80px; /* Tamaño de la fuente */
+    font-family: 'Courier New', Courier, monospace, sans-serif; /* Tipo de fuente */
+    color: rgb(110, 64, 60);
+}
+
+
+.card-title span:first-child {
+    color: rgb(239, 16, 16); /* Color rojo para el primer span dentro del título */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.card-title span:last-child {
+    color: rgb(34, 32, 66); /* Color azul oscuro para el segundo span dentro del título */
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.256);
+
+}

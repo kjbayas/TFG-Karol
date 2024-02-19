@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+.detalle_libro .button{
+    background-color: aqua;
+    padding: 5px;
+}
+.pie-pagina {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.pie-pagina .grupo-1 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.pie-pagina .grupo-1 .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pie-pagina .grupo-1 .box figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+}
+
+.pie-pagina .grupo-1 .box figure img {
+    width: 100%;
+    height: auto;
+}
+
+.pie-pagina .grupo-1 .box h3 {
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.pie-pagina .grupo-1 .box p {
+    color: rgb(38, 43, 90);
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.pie-pagina .grupo-1 .red-social a {
+    font-size: 24px;
+    margin-right: 10px;
+    color: black;
+}
+
+.pie-pagina .grupo-1 .red-social a:hover {
+    color: rgb(242, 75, 75);
+}
+
+.pie-pagina .grupo-2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Vista para dispositivos móviles */
+@media (max-width: 767px) {
+    .pie-pagina .grupo-1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pie-pagina .grupo-1 .box {
+        margin-bottom: 20px;
+    }
+
+    .pie-pagina .grupo-1 .red-social a {
+        font-size: 18px;
+    }
+}

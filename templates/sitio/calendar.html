@@ -1,0 +1,207 @@
+{% include 'sitio/top_of_page.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calendario</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS v5.2.1 --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css">
+    <link href="{{ url_for('static', filename='css/body.css') }}" rel="stylesheet" crossorigin="anonymous" >
+
+    <style>
+        body {
+            background-image: url('/static/archivos/fondos/fondoc.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-xl rounded-3 " >
+        <div class="col-md-12 bg-transparent ">
+            <div class="custom-card bg-transparent">
+                <div class="row">
+                    <div class="col-md-6 mb-4 text-center ">
+                       <h1 class="text-center p-4"> Event List </h1>
+                       <div class="list-group " id="eventList"></div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-4 rounded-3 p-4" id="pastEventsContainer" >
+                    <h1 class="text-center p-5">Past Event</h1>
+                    <div id="pastEvents"></div>
+                </div>
+            </div>
+        </div>     
+    </nav>
+
+    <script>
+        var events = [
+            {% for event in calendar %}
+            {
+                title: '{{ event[1] }}',
+                place:  '{{ event[2] }}',
+                start: '{{ event[3].strftime("%Y-%m-%dT%H:%M:%S") }}',
+                end: '{{ event[4].strftime("%Y-%m-%dT%H:%M:%S") }}'
+            },
+            {% endfor %}
+        ];
+
+        // Inicializar el calendario
+        var calendar = $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            events: events
+        });
+
+        // Filtrar eventos futuros y eventos de hoy
+        var today = moment().startOf('day');
+        var futureAndTodayEvents = events.filter(function(event) {
+            var eventStartDate = moment(event.start, "YYYY-MM-DDTHH:mm:ss");
+            return eventStartDate.isSameOrAfter(today);
+        });
+
+        // Cargar y mostrar los eventos en la lista
+        function loadEventList() {
+            var eventList = $('#eventList');
+            eventList.empty();
+
+            var listHeader = `
+                <li class="list-group-item active">
+                    <div class="row">
+                        <div class="col-md-4"><strong>Title</strong></div>
+                        <div class="col-md-2"><strong>Start Date</strong></div>
+                        <div class="col-md-2"><strong>End Date</strong></div>
+                        <div class="col-md-2"><strong>Place or URL</strong></div>
+                    </div>
+                </li>`;
+            eventList.append(listHeader);
+
+            // Ordenar los eventos por fecha de inicio
+            futureAndTodayEvents.sort(function(a, b) {
+                return moment(a.start, "YYYY-MM-DDTHH:mm:ss") - moment(b.start, "YYYY-MM-DDTHH:mm:ss");
+            });
+
+            $.each(futureAndTodayEvents, function(index, event) {
+                var startFormatted = moment(event.start, "YYYY-MM-DDTHH:mm:ss").format("DD/MM/YYYY HH:mm:ss");
+                var endFormatted = moment(event.end, "YYYY-MM-DDTHH:mm:ss").format("DD/MM/YYYY HH:mm:ss");
+                var place;
+                if (event.place.startsWith('http')) {
+                    // Si el lugar es una URL, crea un enlace
+                    place = `<a href="${event.place}" target="_blank">URL del evento</a>`;
+                } else {
+                    // Si no es una URL, muestra el lugar normalmente
+                    place = event.place;
+                }
+                var listItem = `
+                    <li class="list-group-item ${event.isToday ? 'list-group-item-success' : ''}">
+                        <div class="row">
+                            <div class="col-md-4">${event.title}</div>
+                            <div class="col-md-2">${startFormatted}</div>
+                            <div class="col-md-2">${endFormatted}</div> 
+                            <div class="col-md-2">${place}</div>
+                        </div>
+                    </li>`;
+                eventList.append(listItem);
+            });
+        }
+
+        // Resalta eventos del día
+        function highlightTodayEvents() {
+            futureAndTodayEvents.forEach(function(event) {
+                var eventStartDate = moment(event.start, "YYYY-MM-DDTHH:mm:ss").startOf('day');
+                if (eventStartDate.isSame(today)) {
+                    event.isToday = true;
+                } else {
+                    event.isToday = false;
+                }
+            });
+        }
+
+        // Cargar los eventos en la lista y resaltar los eventos del día cuando el DOM esté listo
+        $(document).ready(function() {
+            loadEventList();
+            highlightTodayEvents();
+            loadEventList(); // Llamar a loadEventList nuevamente después de resaltar los eventos del día
+        });
+    
+        var pastEvents = events.filter(function(event) {
+        var eventEndDate = moment(event.end, "YYYY-MM-DDTHH:mm:ss");
+        return eventEndDate.isBefore(today); // Eventos que terminaron antes de hoy
+    });
+
+    // Función para cargar y mostrar eventos pasados
+    function loadPastEvents() {
+        var pastEventsContainer = $('#pastEvents');
+        pastEventsContainer.empty();
+
+        // Ordenar los eventos pasados por fecha de inicio de manera descendente
+        pastEvents.sort(function(a, b) {
+            return moment(b.start, "YYYY-MM-DDTHH:mm:ss") - moment(a.start, "YYYY-MM-DDTHH:mm:ss");
+        });
+
+        var batchSize = 4;
+        var batches = [];
+        for (var i = 0; i < pastEvents.length; i += batchSize) {
+            batches.push(pastEvents.slice(i, i + batchSize));
+        }
+
+        $.each(batches, function(index, batch) {
+            var row = $('<div class="row"></div>');
+            $.each(batch, function(innerIndex, event) {
+                var startFormatted = moment(event.start).format("DD/MM/YYYY HH:mm:ss");
+                var endFormatted = moment(event.end).format("DD/MM/YYYY HH:mm:ss");
+                var place;
+                if (event.place.startsWith('http')) {
+                    // Si el lugar es una URL, muestra un enlace que redirige a esa URL
+                    place = `<a href="${event.place}" target="_blank">URL evento</a>`;
+                } else {
+                    // Si no es una URL, muestra el lugar normalmente
+                    place = event.place;
+                }
+                var eventItem = `
+                    <div class="col-md-3">
+                        <div class="alert alert-secondary " role="alert">
+                            <div class="text-center" style ="background-color: #000000;color: #ffffff;"><strong>${event.title}</strong></div>
+                            <strong>Start Date:</strong> ${startFormatted}<br>
+                            <strong>End Date:</strong> ${endFormatted}<br>
+                            <strong>Place or URL:</strong> ${place}
+                        </div>
+                    </div>`;
+                row.append(eventItem);
+            });
+            pastEventsContainer.append(row);
+        });
+    }
+
+
+
+    // Llama a la función para cargar eventos pasados cuando el DOM esté listo
+    $(document).ready(function() {
+        loadEventList();
+        highlightTodayEvents();
+        loadEventList(); // Llamar a loadEventList nuevamente después de resaltar los eventos del día
+        loadPastEvents(); // Cargar eventos pasados
+    });
+
+    </script>
+</body>
+
+
+
+{% include 'sitio/footer.html' %}

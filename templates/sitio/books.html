@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>libros</title>
+    <link href="{{ url_for('static', filename='css/books.css') }}" rel="stylesheet" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/translation.js') }}"></script>
+    <style>
+        body {
+          background-image: url('/static/archivos/fondos/fondo8.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+        }
+      </style>
+</head>
+
+<body>
+    <div id="content-to-translate">
+        {% include 'sitio/top_of_page.html' %}
+
+        <div class="navbar navbar-expand-xl justify-content-between align-items-center rounded-3">
+            {% include 'sitio/filterForm.html' %}
+        </div>
+        
+        <nav class="navbar navbar-expand-xl rounded-3 justify-content-center align-items-center ">
+            <div class="container-fluid ">
+                <div class="row flex-fill">
+                    {% for libro in libros %}
+                    <div class="col-md-2 col-sm-6 mb-3">
+                        <div class="card text-center w-100 h-100 flex-fill">
+                            <a href="/admin/books/{{ libro[0] }}">
+                                <img class="card-img-top  img-grayscale w-100 " 
+                                src="{{ url_for('static', filename='archivos/imagenes/' + libro[2]) }}" alt="Title">
+                                <div class="card-overlay">
+                                    <p class="book-name">{{ libro[1] }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </nav>
+    </div>
+
+<script>function seleccionarLibro(elemento) {
+    // Deselecciona todos los libros
+    var libros = document.querySelectorAll('.card');
+    libros.forEach(function(libro) {
+        libro.classList.remove('seleccionado');
+    });
+
+    // Selecciona el libro clicado
+    elemento.classList.add('seleccionado');
+}
+</script>
+</body>
+
+</html>
+{% include 'sitio/footer.html' %}

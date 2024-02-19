@@ -1,0 +1,28 @@
+.img-grayscale {
+    filter: grayscale(100%);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(50, 51, 51, 0.923); 
+    color: white;
+    font-size: large;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card:hover .card-overlay {
+    display: flex; 
+}
+.card-img-top {
+    width: 100px;
+    height: 350px;
+    object-fit: cover;
+}
+

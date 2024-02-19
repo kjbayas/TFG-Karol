@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-Admin</title>
+
+    <style>
+        .highlight-text {
+            color: rgb(62, 115, 148);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        {% include 'admin/top_of_page.html' %}
+        <div class="row mt-4">
+            <div class="col-md-8 mb-4">
+                <div class="p-5 bg-light rounded-3 text-center h-100 d-flex align-items-stretch">
+                    <p class="lead" style="text-align: justify;">
+                        "We are pleased to welcome you to our online platform designed exclusively for students and passionate
+                        teachers interested in the world of architecture. In this dynamic space, you can immerse yourself in a
+                        collaborative environment that nurtures creativity, learning, and innovation."
+                    </p>
+                    <hr class="my-4">
+                </div>
+            </div>
+        
+            <div class="col-md-4 mb-4">
+                <div class="p-5 bg-light rounded-3 text-center h-100 d-flex align-items-stretch justify-content-center">
+                    <h2 class="lead"> ¡¡ Welcome !! 
+                        <span style="color: rgb(16, 58, 249); text-transform: uppercase; font-weight: bold;">{{session['username']}}</span>
+                        to our Architecture Community!
+                    </h2>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Community Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="p-5 bg-light rounded-3 text-center text">
+                    <h2 style="margin-bottom: 50px; ">Our Community, Your Space.</h2>
+                    <p class="lead" style="text-align: justify;">
+                        "This platform is not just an online space; it's a community. Here, each one of you has the opportunity
+                        to contribute, learn, and grow together. Feel free to explore, ask questions, share, and above all, be
+                        inspired. We appreciate your participation and hope that your experience in our community is enriching
+                        and rewarding."
+                    </p>
+                    <p class="lead" >¡ Let's build the future of architecture together !</p>
+                    <hr class="my-5">
+                    <h2 style="margin-bottom: 50px;">What can they expect?</h2>
+                    <ol class="lead highlight-list list-group list-group-numbered text-start">
+                        <li class="list-group-item">
+                            <span class="highlight-text">Share Knowledge: </span>
+                            "Upload and share documents, research, and projects to enrich collective knowledge.
+                            This platform is designed so that every contribution matters and inspires others."
+                        </li>
+                        <li class="list-group-item">
+                            <span class="highlight-text">Connect with Events: </span>
+                            "Stay informed about the latest news and important dates in the world of architecture. 
+                            From talks and workshops to exhibitions, here you will find a comprehensive calendar of 
+                            events to keep you updated."
+                        </li>
+                        <li class="list-group-item">
+                            <span class="highlight-text">Limitless Collaboration: </span>
+                            "We encourage collaboration among students and teachers. Use our collaboration tools to 
+                            work together on projects, research, and activities that drive the field of architecture forward."
+                        </li>
+                        <li class="list-group-item">
+                            <span class="highlight-text">Explore Creativity: </span>
+                            "Get inspired by exploring the work of others, from innovative designs to creative solutions for 
+                            architectural challenges. The diversity of ideas is our greatest asset."
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login del administrador</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    body {
+        background-image: url('/static/archivos/fondos/fondo2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    {% include 'admin/top_of_page.html' %}
+    <div class="row">
+      <div class="col-md-6 mx-auto text-center" style="padding: 30px;">
+
+        {% if mensaje %}
+          <div class="alert alert-danger" role="alert">
+            <strong>{{ mensaje }}</strong>
+          </div>
+        {% endif %}
+
+        <div class="card">
+          <div class="card-body">
+            <form action="/admin/login" method="Post">
+              <h3 class="text-center">Access</h3>
+              <h5 class="text-center">Login</h5>
+              <div class="mb-3 bg-light">
+                <input type="text" class="form-control" name="txtUsuario" id="txtUsuario"
+                  aria-describedby="helpId" placeholder="Username">
+              </div>
+              <div class="mb-3 input-group">
+                <input type="password" class="form-control" name="txtPassword" id="txtPassword" placeholder="Password">
+                <button class="btn btn-outline-secondary" type="button" id="togglePassword">Show</button>
+              </div>
+              <div style="display: flex; justify-content: center; ">
+                <button type="submit" class="btn btn-dark">LOGIN</button>
+              </div>
+              <div style="text-align: center;">
+                <br>
+                <a href="/admin/olvide-contrasena">Forgot your password?</a>
+              </div>
+            </form>
+            <hr>
+            <div style="display: flex; justify-content: center; ">
+              <a href="/admin/registro" class="btn btn-outline-dark">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+
+  <script>
+    const togglePasswordButton = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('txtPassword');
+
+    togglePasswordButton.addEventListener('click', function () {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePasswordButton.textContent = 'Hide';
+        } else {
+            passwordInput.type = 'password';
+            togglePasswordButton.textContent = 'Show';
+        }
+    });
+</script>
+</body>
+
+</html>

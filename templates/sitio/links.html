@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+    <link href="{{ url_for('static', filename='css/links.css') }}" rel="stylesheet" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/translation.js') }}"></script>
+    
+</head>
+<body>
+
+    <div id="content-to-translate">
+
+        {% include 'sitio/top_of_page.html' %}
+
+        <nav class="navbar rounded-3 ">
+            <div class="col-md-12">
+                <div class="centered">
+                    <h1 class="text-center p-4">Links</h1>
+                </div>
+            </div>
+            
+            <div class="container-fluid">
+                <div class="col-md-12 bg-transparent">
+                    <div class="row" id="card-row">
+                        {% for link in links %}
+                        <div class="col-md-4 mb-4">
+                            <a href="{{ link[2] }}" target="_blank" class="card-link">
+                                <div class="card" tabindex="0">
+                                    <div class="card-body text-center">
+                                        {{ link[1] }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </nav>  
+    </div>
+    {% include 'sitio/footer.html' %}
+
+    <script>
+        window.onload = function() {
+            // Obtener todos los elementos .card-body
+            var cardBodies = document.querySelectorAll('.card-body');
+        
+            // Obtener la altura máxima
+            var maxHeight = 0;
+            cardBodies.forEach(function(cardBody) {
+                maxHeight = Math.max(maxHeight, cardBody.offsetHeight);
+            });
+        
+            // Aplicar la altura máxima a todos los elementos .card-body
+            cardBodies.forEach(function(cardBody) {
+                cardBody.style.height = maxHeight + 'px';
+            });
+        };
+        </script>
+</body>
+</html>
+

@@ -1,0 +1,688 @@
+{% include 'sitio/top_of_page.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="{{ url_for('static', filename='css/body.css') }}" rel="stylesheet" crossorigin="anonymous" >
+  <style>
+    body {
+      background-image: url('/static/archivos/fondos/fondo5.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="row justify-content-center" >
+    <div class="col-md-12">
+        <div class="custom-card">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <h2>What is architecture?</h2>
+                    <p class="lead" style="text-align: justify;">
+                      Architecture is a multifaceted discipline that goes beyond the construction of structures; 
+                        it is a form of art that blends creativity and utility. Its basic principles include considering
+                        the function and utility of a building, paying attention to aesthetics and form to create visually 
+                        appealing designs, ensuring the structure and stability for safety, and integrating the building carefully 
+                        with its surrounding environment, considering geographical and cultural factors.
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                  <div class="video-container">
+                      <video style="width: 100%; height: 100%;" preload="auto" controls>
+                          <source src="https://tv.urjc.es/trackfile/5c7d4eb5d68b1469578b4567.mp4" type="video/mp4">
+                          Your browser does not support the video element.
+                      </video>
+                  </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h2>Why study here?</h2>
+                    <p class="lead" style="text-align: justify;">
+                        Studying architecture at Universidad Rey Juan Carlos (URJC) provides a comprehensive education 
+                        that includes theoretical and practical aspects of architectural design, as well as skills in urban 
+                        planning and environmental sustainability. Students learn to create environments that are aesthetically 
+                        pleasing, energy-efficient, and socially relevant.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="row ">
+    <div class="col-md-4 text-center">
+      <div class="p-5 mb-4 custom-card d-flex flex-column">
+        <p class="lead" style="text-align: justify;">
+          This is an online platform designed exclusively for students and teachers passionate about 
+          the world of architecture. In this space, you can immerse yourself in a collaborative environment 
+          that fosters creativity, learning, and innovation.
+        </p>
+              
+        <div class="mt-3 container">
+          <div class="row">
+            <div class="col-md-6">
+              <a href="/admin/registro" class="btn btn-outline-dark rounded-3 d-block mb-3 text-wrap" role="button">Sign up</a>
+            </div>
+            <div class="col-md-6">
+              <a href="/admin/login" class="btn btn-outline-dark rounded-3 d-block mb-3 text-wrap" role="button">Login</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <a href="https://www.urjc.es/intranet-urjc" class="btn btn-outline-dark rounded-3 d-block text-wrap" role="button">Intranet-URJC</a>
+            </div>
+          </div>
+        </div>     
+      </div>
+    </div>
+  
+    <div class="col-md-8">
+      <div class="p-5 mb-4 custom-card " >
+        <h2 > Basic Information </h2>
+        <div class="accordion" id="informacion-accordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="proyecto-heading">
+              <button class="accordion-button" type="button" data-toggle="collapse" data-target="#proyecto-collapse" aria-expanded="true" aria-controls="proyecto-collapse">
+                What knowledge will I gain with this degree?
+              </button>
+            </h2>
+            <div id="proyecto-collapse" class="accordion-collapse collapse" aria-labelledby="proyecto-heading" data-bs-parent="#informacion-accordion">
+              <div class="accordion-body">
+                <p style="color: darkblue;"><strong>Building Project and Construction Management:</strong></p>
+                <p>Knowledge for the conception, planning, and execution of new construction projects and the intervention in existing buildings, considering technical, artistic, human, and economic factors. Familiarity with the methodology of building project development, as well as construction management and supervision.</p>
+                <p style="color: darkblue;"><strong>Urban Planning, Sociology, and the City:</strong></p>
+                <p>Understanding the various forms of urban planning and their technical, artistic, social, and managerial development. Design, planning, and execution of urban spaces, gardens, industrial estates, and, in general, territorial organization at different scales, considering technical, human, artistic, and economic factors.</p>
+                <p style="color: darkblue;"><strong>Architecture, Business, and Management:</strong></p>
+                <p>Understanding both the regulations applicable to the practice of the architect profession and the organization and management of professional activities. Knowledge of management systems, real estate appraisal, and valuation. Understanding of economics and business management essential for the development of professional and entrepreneurial activities. Awareness of the architect's capabilities to broaden their range of employment opportunities. Knowledge of current legislation and the functioning of professional associations.</p>
+                <p style="color: darkblue;"><strong>Construction, Structural Calculation, and Materials:</strong></p>
+                <p>Understanding the factors that affect construction, urban planning, and, in general, the planning and execution of spaces and their technical solutions. Knowledge of materials, geotechnics, conception, design, and calculation of structures, conception, design, and calculation of installations, pathology in construction, and rehabilitation and heritage management.</p>
+                <p style="color: darkblue;"><strong>Design, Art, and Space:</strong></p>
+                <p>Understanding the history of art and architecture. Knowledge of techniques and graphic resources for the conception and spatial representation, both real and virtual: from analytical and conceptual drawing to the final technical representation for execution or communicative purposes, such as competitions or client presentations. Familiarity with design principles in general, including graphic design, and its application to architecture. Conceptualization of exhibition spaces, scenography, and ephemeral architecture.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Areas Temáticas -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="temas-heading">
+              <button class="accordion-button" type="button" data-toggle="collapse" data-target="#temas-collapse" aria-expanded="true" aria-controls="temas-collapse">
+                What thematic areas will I address in this degree?
+              </button>
+            </h2>
+            <div id="temas-collapse" class="accordion-collapse collapse" aria-labelledby="temas-heading" data-bs-parent="#informacion-accordion">
+              <div class="accordion-body">
+                <p>Architecture brings together knowledge from the arts, science, technology, and social sciences. The thematic areas addressed in this degree are:</p>
+                <ul>
+                  <li>Building Project and Construction Management.</li>
+                  <li>Urban Planning, Sociology, and the City.</li>
+                  <li>Architecture, Business, and Management.</li>
+                  <li>Construction, Structural Calculation, and Materials.</li>
+                  <li>Design, Art, and Space.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="otro-heading">
+              <button class="accordion-button" type="button" data-toggle="collapse" data-target="#otro-collapse-1" aria-expanded="true" aria-controls="otro-collapse">
+                Minimum Stay Requirements
+              </button>
+            </h2>
+            <div id="otro-collapse-1" class="accordion-collapse collapse" aria-labelledby="otro-heading" data-bs-parent="#informacion-accordion">
+              <div class="accordion-body">
+                <ul style="list-style-type: square;">
+                  <li>The maximum duration for students in undergraduate studies is eight years for full-time students. Part-time students may request an extension of up to two additional years from the Rector.</li>
+                  <li>For degree programs exceeding 240 credits (4 years), the maximum mentioned above will be extended by one more year for every 60 ECTS credits added to the initial 240 ECTS.</li>
+                  <li>Students must pass a minimum of two courses in the first academic year. Part-time students are required to pass at least one course in their first academic year.</li>
+                  <li>Students pursuing any official undergraduate degree at Universidad Rey Juan Carlos may enroll a maximum of four times for the completion of each course in the curriculum, excluding any previous cancellations of the same course.</li>
+                </ul>
+                <p>To expand this information, see:
+                  <a href="https://www.urjc.es/images/Universidad/Presentacion/normativa/Normativa%20Permanencia%20y%20Matricula.pdf?ml=1&iframe=1" style="color:red">Continuation Policy</a></p>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="otro-heading">
+              <button class="accordion-button" type="button" data-toggle="collapse" data-target="#otro-collapse-2" aria-expanded="true" aria-controls="otro-collapse">
+                Competencies
+              </button>
+            </h2>
+            <div id="otro-collapse-2" class="accordion-collapse collapse " aria-labelledby="otro-heading" data-bs-parent="#informacion-accordion">
+              <div class="accordion-body">
+                <p>GENERAL COMPETENCIES</p>
+                <ul>
+                  <li>CG1&nbsp; That students have demonstrated possession and understanding of knowledge in an area of study that builds on the foundation of general secondary education, typically at a level that, while supported by advanced textbooks, also includes some aspects that involve knowledge from the forefront of their field of study.</li>
+                  <li>CG2&nbsp; That students can apply their knowledge to their work or vocation in a professional manner and possess the competencies usually demonstrated through the development and defense of arguments and the resolution of problems within their area of study.</li>
+                  <li>CG3&nbsp; That students have the ability to gather and interpret relevant data (usually within their field of study) to make judgments that include reflection on significant social, scientific, or ethical issues.</li>
+                  <li>CG4&nbsp; That students can communicate information, ideas, problems, and solutions to both specialized and non-specialized audiences.</li>
+                  <li>CG5&nbsp; That students have developed the learning skills necessary to undertake further studies with a high degree of autonomy.</li>
+                  <li>CG6&nbsp; Understanding the history and theories of architecture, as well as the arts, technologies, and human sciences related to it.</li>
+                  <li>CG7&nbsp; Understanding the role of fine arts as a factor that can influence the quality of architectural conception.</li>
+                  <li>CG8&nbsp; Understanding urban planning and the techniques applied in the planning process.</li>
+                  <li>CG9&nbsp; Understanding the issues of structural design, construction, and engineering associated with building projects, as well as the techniques for resolving them.</li>
+                  <li>CG10&nbsp; Understanding the physical issues, various technologies, and the function of buildings in order to provide them with internal conditions of comfort and protection against climatic factors.</li>
+                  <li>CG11&nbsp; Understanding the industries, organizations, regulations, and procedures to materialize projects into buildings and integrate plans into the overall planning.</li>
+                  <li>CG12&nbsp; Understanding the relationships between people and buildings, as well as between buildings and their surroundings. Recognizing the need to relate buildings and the spaces between them based on human needs and scale.</li>
+                </ul>
+                <p>SPECIFIC COMPETENCIES</p>
+                <ul>
+                  <li>CE1&nbsp; Ability to apply graphic procedures to the representation of spaces and objects (WORKSHOP)</li>
+                  <li>CE2&nbsp; Ability to conceive and represent the visual attributes of objects and master proportion and drawing techniques, including computer-based ones (WORKSHOP)</li>
+                  <li>CE3&nbsp; Adequate knowledge applied to architecture and urban planning: Spatial representation systems.</li>
+                  <li>CE4&nbsp; Adequate knowledge applied to architecture and urban planning: Analysis and theory of form and laws of visual perception.</li>
+                  <li>CE5&nbsp; Adequate knowledge applied to architecture and urban planning: Metric and projective geometry.</li>
+                  <li>CE6&nbsp; Adequate knowledge applied to architecture and urban planning: Techniques of graphic survey in all its phases, from sketch drawing to scientific restitution.</li>
+                  <li>CE7&nbsp; Adequate knowledge applied to architecture and urban planning: Principles of general mechanics, statics, mass geometry, and vector and tensor fields.</li>
+                  <li>CE8&nbsp; Adequate knowledge applied to architecture and urban planning: Principles of thermodynamics, acoustics, and optics.</li>
+                  <li>CE9&nbsp; Adequate knowledge applied to architecture and urban planning: Principles of fluid mechanics, hydraulics, electricity, and electromagnetism.</li>
+                  <li>CE10&nbsp; Adequate knowledge applied to architecture and urban planning: Foundations of topography, hypsometry, cartography, and land modification techniques.</li>
+                  <li>CE11&nbsp; Adequate knowledge applied to architecture and urban planning: Numerical calculation, analytical and differential geometry, and algebraic methods.</li>
+                  <li>CE12&nbsp; Ability to conceive, calculate, design, integrate into buildings and urban ensembles, and execute: Foundation solutions (WORKSHOP).</li>
+                  <li>CE13&nbsp; Ability to apply technical and constructive standards.</li>
+                  <li>CE14&nbsp; Ability to preserve building structures, foundations, and civil works.</li>
+                  <li>CE15&nbsp; Ability to preserve finished works.</li>
+                  <li>CE16&nbsp; Ability to assess works.</li>
+                  <li>CE17&nbsp; Capacity to conceive, calculate, design, integrate into buildings and urban ensembles, and execute: Building structures (WORKSHOP).</li>
+                  <li>CE18&nbsp; Capacity to conceive, calculate, design, integrate into buildings and urban ensembles, and execute: Interior division systems, carpentry, stairs, and other finished works (WORKSHOP).</li>
+                  <li>CE19&nbsp; Capacity to conceive, calculate, design, integrate into buildings and urban ensembles, and execute: Enclosure systems, roof, and other structural works (WORKSHOP).</li>
+                  <li>CE20&nbsp; Capacity to conceive, calculate, design, integrate into buildings and urban ensembles, and execute: Installations for the supply, treatment, and evacuation of water, heating, and air conditioning.</li>
+                  <li>CE21&nbsp; Ability to preserve structural works.</li>
+                  <li>CE22&nbsp; Ability to project building and urban installations for electrical transformation and supply, audiovisual communication, acoustic conditioning, and artificial lighting.</li>
+                  <li>CE23&nbsp; Ability to preserve installations.</li>
+                  <li>CE24&nbsp; Adequate knowledge of: Mechanics of solids, continuous media, and soil, as well as the plastic, elastic, and resistance qualities of heavy-duty construction materials.</li>
+                  <li>CE25&nbsp; Adequate knowledge of: Conventional construction systems and their pathology.</li>
+                  <li>CE26&nbsp; Adequate knowledge of: Physical and chemical characteristics, production procedures, pathology, and use of construction materials.</li>
+                  <li>CE27&nbsp; Adequate knowledge of: Industrialized construction systems.</li>
+                  <li>CE28&nbsp; Knowledge of: Deontology, professional organization, professional structure, and civil liability.</li>
+                  <li>CE29&nbsp; Knowledge of: Administrative and management procedures and professional processing.</li>
+                  <li>CE30&nbsp; Knowledge of: Organization of professional offices.</li>
+                  <li>CE31&nbsp; Knowledge of: Methods of measurement, valuation, and expertise.</li>
+                  <li>CE32&nbsp; Knowledge of: Safety and hygiene project in construction.</li>
+                  <li>CE33&nbsp; Knowledge of: Real estate management and direction.</li>
+                  <li>CE34&nbsp; Ability to: Eliminate architectural barriers (WORKSHOP).</li>
+                  <li>CE35&nbsp; Ability to: Solve passive environmental conditioning, including thermal and acoustic insulation, climate control, energy performance, and natural lighting (WORKSHOP).</li>
+                  <li>CE36&nbsp; Ability to: Catalog the built and urban heritage and plan its protection (WORKSHOP)</li>
+                  <li>CE37&nbsp; Capacity for the conception, practice, and development of: Basic and execution projects, sketches, and preliminary projects (WORKSHOP)</li>
+                  <li>CE38&nbsp; Capacity for the conception, practice, and development of: Urban projects (WORKSHOP)</li>
+                  <li>CE39&nbsp; Capacity for the conception, practice, and development of: Construction site management (WORKSHOP)</li>
+                  <li>CE40&nbsp; Ability to: Develop functional programs for buildings and urban spaces (WORKSHOP)</li>
+                  <li>CE41&nbsp; Ability to: Intervene in and preserve, restore, and rehabilitate the built heritage (WORKSHOP)</li>
+                  <li>CE42&nbsp; Ability to: Practice architectural criticism</li>
+                  <li>CE43&nbsp; Ability to: Carry out safety, evacuation, and protection projects in buildings (WORKSHOP)</li>
+                  <li>CE44&nbsp; Ability to: Draft civil works projects (WORKSHOP)</li>
+                  <li>CE45&nbsp; Ability to: Design and execute urban layouts and projects for urbanization, gardening, and landscaping (WORKSHOP)</li>
+                  <li>CE46&nbsp; Ability to: Apply urban planning standards and ordinances (WORKSHOP)</li>
+                  <li>CE47&nbsp; Ability to: Develop environmental, landscape, and correction of environmental impact studies (WORKSHOP).</li>
+                  <li>CE48&nbsp; Adequate knowledge of: General theories of form, composition, and architectural types</li>
+                  <li>CE49&nbsp; Adequate knowledge of: General history of architecture</li>
+                  <li>CE50&nbsp; Adequate knowledge of: Methods for studying processes of symbolization, practical functions, and ergonomics</li>
+                  <li>CE51&nbsp; Adequate knowledge of: Methods for studying social needs, quality of life, habitability, and basic housing programs</li>
+                  <li>CE52&nbsp; Adequate knowledge of: Ecology, sustainability, and principles of conservation of energy and environmental resources</li>
+                  <li>CE53&nbsp; Adequate knowledge of: Architectural, urban, and landscape traditions in Western culture, including their technical, climatic, economic, social, and ideological foundations</li>
+                  <li>CE54&nbsp; Adequate knowledge of: Aesthetics and theory and history of fine arts and applied arts</li>
+                  <li>CE55&nbsp; Adequate knowledge of: Relationship between cultural patterns and the social responsibilities of the architect</li>
+                  <li>CE56&nbsp; Adequate knowledge of: Foundations of vernacular architecture</li>
+                  <li>CE57&nbsp; Adequate knowledge of: Sociology, theory, economics, and urban history</li>
+                  <li>CE58&nbsp; Adequate knowledge of: Methodological foundations of urban planning and territorial and metropolitan organization</li>
+                  <li>CE59&nbsp; Knowledge of: Civil, administrative, urban, building regulations, and industry regulations related to professional performance</li>
+                  <li>CE60&nbsp; Knowledge of: Viability analysis and supervision and coordination of integrated projects</li>
+                  <li>CE61&nbsp; Knowledge of: Real estate appraisal</li>
+                  <li>CE62&nbsp; Knowledge of: Mechanisms for drafting and managing urban plans at any scale</li>
+                  <li>CE63&nbsp; Preparation, presentation, and defense before a University Tribunal of an original academic work carried out individually related to any of the disciplines studied.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </br>
+        <h1> TRAINING ITINERARY </h1>
+        <div class="accordion" id="informacion-accordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="proyecto-heading">
+              <button class="accordion-button" type="button" data-toggle="collapse" data-target="#proyecto-collapse-3" aria-expanded="true" aria-controls="proyecto-collapse">
+                1st COURSE
+              </button>
+            </h2>
+            <div id="proyecto-collapse-3" class="accordion-collapse collapse" aria-labelledby="proyecto-heading" data-bs-parent="#informacion-accordion">
+              <div class="accordion-body overflow-auto">
+                <table summary="curso 1" role="navigation" align="center" class="table table-bordered">
+                  <tbody>
+                    <tr aria-hidden="true" style="color: rgb(47, 69, 235);">
+                      <td align="center" ><strong>Semester</strong></td>
+                      <td align="center"><strong>Subject</strong></td>
+                      <td align="center"><strong>Character</strong></td>
+                      <td align="center"><strong>ECTS Credits</strong></td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">Annual</td>
+                      <td align="center">Architectural Representation</td>
+                      <td align="center">FBR</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">Annual</td>
+                      <td align="center">Life Drawing</td>
+                      <td align="center">OB</td>
+                      <td align="center">9</td>
+                    </tr>
+                    <tr role="row" aria-labelledby="i4t-id-21" >
+                      <td align="center">Annual</td>
+                      <td align="center">Graphic Communication</td>
+                      <td align="center">OB</td>
+                      <td align="center">9</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">History of Art and Architecture I</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Mathematics I</td>
+                      <td align="center">FBR</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Computer Systems Applied to Architecture</td>
+                      <td align="center">FBC</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Architectural Typologies</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">History of Art and Architecture II</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Mathematics II</td>
+                      <td align="center">FBR</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Building Materials</td>
+                      <td align="center">FBR</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr aria-hidden="true">
+                      <td colspan="4" align="center" style="color: rgb(47, 69, 235);"><strong>Total credits to take: 60</strong></td>
+                    </tr>
+                  </tbody>
+                </table> 
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="proyecto-heading">
+              <button class="accordion-button" type="button" data-toggle="collapse" data-target="#proyecto-collapse-4" aria-expanded="true" aria-controls="proyecto-collapse">
+                2st COURSE
+              </button>
+            </h2>
+            <div id="proyecto-collapse-4" class="accordion-collapse collapse" aria-labelledby="proyecto-heading" data-bs-parent="#informacion-accordion">
+              <div class="accordion-body overflow-auto">
+                <table summary="curso 2" role="navigation" align="center" class="table table-bordered">
+                  <tbody>
+                    <tr aria-hidden="true" style="color: rgb(47, 69, 235);">
+                      <td align="center" ><strong>Semester</strong></td>
+                      <td align="center"><strong>Subject</strong></td>
+                      <td align="center"><strong>Character</strong></td>
+                      <td align="center"><strong>ECTS Credits</strong></td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">Annual</td>
+                      <td align="center">Introduction to projects</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">Annual</td>
+                      <td align="center">Communication and representation of architectural projects</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">Annual</td>
+                      <td align="center">Modern Language</td>
+                      <td align="center">FBC</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">1</td>
+                      <td align="center">Physics applied to structures and installations</td>
+                      <td align="center">FBR</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Deontology</td>
+                      <td align="center">FBC</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Social and urban history</td>
+                      <td align="center">FBC</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Vanguards and architecture</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Organization and management of the architect's activity</td>
+                      <td align="center">FBR</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Basic physics</td>
+                      <td align="center">FBR</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">2</td>
+                      <td align="center">Introduction to urbanism</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                      <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Construction systems I</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr aria-hidden="true">
+                      <td colspan="4" align="center" style="color: rgb(47, 69, 235);"><strong>Total credits to study: 60</strong></td>
+                    </tr>
+                  </tbody>
+                </table> 
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="proyecto-heading">
+              <button class="accordion-button" type="button" data-toggle="collapse" data-target="#proyecto-collapse-5" aria-expanded="true" aria-controls="proyecto-collapse">
+                3st COURSE
+              </button>
+            </h2>
+            <div id="proyecto-collapse-5" class="accordion-collapse collapse" aria-labelledby="proyecto-heading" data-bs-parent="#informacion-accordion">
+              <div class="accordion-body overflow-auto">
+                <table summary="curso 3" role="navigation" align="center" class="table table-bordered">
+                  <tbody>
+                    <tr aria-hidden="true" style="color: rgb(47, 69, 235);">
+                      <td align="center" ><strong>Semester</strong></td>
+                      <td align="center"><strong>Subject</strong></td>
+                      <td align="center"><strong>Character</strong></td>
+                      <td align="center"><strong>ECTS Credits</strong></td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">Annual</td>
+                      <td align="center">Projects I</td>
+                      <td align="center">OB</td>
+                      <td align="center">12</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Introduction to structural design</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Construction systems II</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">1</td>
+                      <td align="center">Facility Design I:Electricity and lighting</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Facility Design II:Communication and home automation systems</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Urban regulations</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">2</td>
+                      <td align="center">Geotecnia</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Sizing of structures</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Urban planning and design</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">2</td>
+                      <td align="center">Facility Design III:
+                        Plumbing, sanitation, gas and air conditioning</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                      <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Real estate management</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr aria-hidden="true">
+                      <td colspan="4" align="center" style="color: rgb(47, 69, 235);"><strong>Total credits to study: 60</strong></td>
+                    </tr>
+                  </tbody>
+                </table> 
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="proyecto-heading">
+              <button class="accordion-button" type="button" data-toggle="collapse" data-target="#proyecto-collapse-6" aria-expanded="true" aria-controls="proyecto-collapse">
+                4st COURSE
+              </button>
+            </h2>
+            <div id="proyecto-collapse-6" class="accordion-collapse collapse" aria-labelledby="proyecto-heading" data-bs-parent="#informacion-accordion">
+              <div class="accordion-body overflow-auto">
+                <table summary="curso 4" role="navigation" align="center" class="table table-bordered">
+                  <tbody>
+                    <tr aria-hidden="true" style="color: rgb(47, 69, 235);">
+                      <td align="center" ><strong>Semester</strong></td>
+                      <td align="center"><strong>Subject</strong></td>
+                      <td align="center"><strong>Character</strong></td>
+                      <td align="center"><strong>ECTS Credits</strong></td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">Annual</td>
+                      <td align="center">Projects  II</td>
+                      <td align="center">OB</td>
+                      <td align="center">12</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">Annual</td>
+                      <td align="center">Advanced calculation of structures</td>
+                      <td align="center">OB</td>
+                      <td align="center">9</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">Annual</td>
+                      <td align="center">Urban planning project</td>
+                      <td align="center">OB</td>
+                      <td align="center">9</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">1</td>
+                      <td align="center">Pathology, construction and intervention</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Urban facilities</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Appraisals and Valuations</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">2</td>
+                      <td align="center">Construction management</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Architectural theory and criticism</td>
+                      <td align="center">OB</td>
+                      <td align="center">4.5</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">2</td>
+                      <td align="center">Teoría y crítica arquitectónica</td>
+                      <td align="center">OB</td>
+                      <td align="center">4.5</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">2</td>
+                      <td align="center">Entorno social y urbano</td>
+                      <td align="center">OB</td>
+                      <td align="center">4.5</td>
+                    </tr>
+                    <tr aria-hidden="true">
+                      <td colspan="4" align="center" style="color: rgb(47, 69, 235);"><strong>Total credits to study: 60</strong></td>
+                    </tr>
+                  </tbody>
+                </table> 
+              </div>
+            </div>
+          </div>
+        
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="proyecto-heading">
+              <button class="accordion-button" type="button" data-toggle="collapse" data-target="#proyecto-collapse-7" aria-expanded="true" aria-controls="proyecto-collapse">
+                5st COURSE
+              </button>
+            </h2>
+            <div id="proyecto-collapse-7" class="accordion-collapse collapse" aria-labelledby="proyecto-heading" data-bs-parent="#informacion-accordion">
+              <div class="accordion-body overflow-auto">
+                <table summary="curso 5" role="navigation" align="center" class="table table-bordered">
+                  <tbody>
+                    <tr aria-hidden="true" style="color: rgb(47, 69, 235);">
+                      <td align="center" ><strong>Semester</strong></td>
+                      <td align="center"><strong>Subject</strong></td>
+                      <td align="center"><strong>Character</strong></td>
+                      <td align="center"><strong>ECTS Credits</strong></td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Rehabilitación, patología y gestión del patrimonio histórico</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Project Management (Gestión de proyectos)</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Diseño y Viabilidad de Proyectos</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">1</td>
+                      <td align="center">Análisis del Entorno Urbano: Ciudad, redes, vehículo y peatón</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Arquitectura Efímera: Escenografía y Espacios Expositivos</td>
+                      <td align="center">OB</td>
+                      <td align="center">3</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">1</td>
+                      <td align="center">Reconocimiento académico de créditos</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row" >
+                      <td align="center">Annual</td>
+                      <td align="center">Trabajo Fin de Grado</td>
+                      <td align="center">OB</td>
+                      <td align="center">6</td>
+                    </tr>
+                    <tr role="row">
+                      <td align="center">Annual</td>
+                      <td align="center">Prácticas externas</td>
+                      <td align="center">OB</td>
+                      <td align="center">24</td>
+                    </tr>
+                    <tr aria-hidden="true">
+                      <td colspan="4" align="center" style="color: rgb(47, 69, 235);"><strong>Total credits to study: 60</strong></td>
+                    </tr>
+                  </tbody>
+                </table> 
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+  </div> 
+</body>
+</html>
+{% include 'sitio/footer.html' %}

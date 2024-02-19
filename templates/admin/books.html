@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Books</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        {% include 'admin/top_of_page.html' %}
+        <div class="row mt-4">
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center">INSTRUCTIONS</h1>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span style="color: rgb(255, 0, 93); font-weight: bold;">ATTENTION:</span> Before uploading the information, we kindly request that you be careful and attentive to the provided data and that the recommended specifications are met.
+                            </li>
+                            <li>Sections marked with asterisks are mandatory.</li>
+                            <li>For the cover image, it is recommended to use images of 720 x 775 pixels.</li>
+                            <li>Please verify that the author's first and last name are spelled correctly.</li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        {% if mensaje_error %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ mensaje_error }}
+                            </div>
+                        {% endif %}
+    
+                        <form id="bookForm" action="/admin/books/guardar" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="" class="form-label fs-4 fw-bold "><span style="color: rgb(199, 17, 17);">**</span>Title:</label>
+                                <input type="text" class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Write the file's title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label fs-4 fw-bold"><span style="color: rgb(199, 17, 17);">**</span>Cover Image:</label>
+                                <input type="file" class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Select the main image">
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtAutorNombrer" class="form-label fs-4 fw-bold"><span style="color: rgb(199, 17, 17);">**</span>Author Name:</label>
+                                <input type="text" class="form-control" name="txtAutorNombre" id="txtAutorNombre" placeholder="Author's First Name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtAutorApellido" class="form-label fs-4 fw-bold"><span style="color: rgb(199, 17, 17);">**</span>Author Last Name:</label>
+                                <input type="text" class="form-control" name="txtAutorApellido" id="txtAutorApellido" placeholder="Author's Last Name">
+                            </div>                     
+                            <div class="mb-3">
+                                <label for="" class="form-label fs-4 fw-bold"><span style="color: rgb(199, 17, 17);">**</span>URL for additional information:</label>
+                                <input type="text" class="form-control" name="txtURL" id="txtURL" aria-describedby="helpId" placeholder="download url">
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtDescripcion" class="form-label fs-4 fw-bold">Description:</label>
+                                <textarea class="form-control" name="txtDescripcion" id="txtDescripcion" placeholder="Describes the document"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtVideo" class="form-label fs-4 fw-bold">Video:</label>
+                                <input type="file" class="form-control" name="txtVideo" id="txtVideo" placeholder="supports only mp4">
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtPDF" class="form-label fs-4 fw-bold">PDF:</label>
+                                <input type="file" class="form-control" name="txtPDF" id="txtPDF" placeholder="pdf file">
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtImagenSecundaria" class="form-label fs-4 fw-bold">Image:</label>
+                                <input type="file" class="form-control" name="txtImagenSecundaria" id="txtImagenSecundaria" placeholder="Do you want to add more images?">
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtYear" class="form-label fs-4 fw-bold"><span style="color: rgb(199, 17, 17);">**</span>Year:</label>
+                                <select id="txtYear" name="txtYear" class="form-select">
+                                    <option value="">Select a year.</option>
+                                    {% for year in range(2024, 1849, -1) %}
+                                        <option value="{{ year }}">{{ year }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtArea" class="form-label fs-4 fw-bold"><span style="color: rgb(199, 17, 17);">**</span>Area:</label>
+                                <select id="txtArea" name="txtArea" class="form-select">
+                                    <option value="">Select an area.</option>
+                                    <option value="CONSTRUCCIÓN">CONSTRUCCIÓN</option>
+                                    <option value="EXPRESIÓN GRÁFICA">EXPRESIÓN GRÁFICA</option>
+                                    <option value="URBANISMO">URBANISMO</option>
+                                    <option value="PROYECTOS">PROYECTOS</option>
+                                    <option value="ESTRUCTURAS">ESTRUCTURAS</option>
+                                    <option value="INSTALACIONES">INSTALACIONES</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 text-end">
+                                <button type="button" onclick="validateForm()" class="btn btn-primary">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    
+        <div class="row mt-4">
+            {% include 'admin/documents.html' %}
+        </div>
+    </div>
+    
+    <script>
+        function validateForm() {
+            var nombre = document.getElementById("txtNombre").value;
+            var url = document.getElementById("txtURL").value;
+            var archivo = document.getElementById("txtImagen").value;
+            var autorNombre = document.getElementById("txtAutorNombre").value;
+            var autorApellido = document.getElementById("txtAutorApellido").value;
+            
+            if (nombre === "" || url === "" || archivo === "" || autorNombre === "" || autorApellido === "") {
+                alert("Please fill in all the required fields.");
+            } else {
+                document.getElementById("bookForm").submit();
+            }
+        }
+    </script>
+</body>
+
+</html>

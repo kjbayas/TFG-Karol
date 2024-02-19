@@ -1,0 +1,26 @@
+
+.navbar {
+  background-color: #f8f9fa !important;
+  margin: 10px 10px 0 10px !important;
+}
+
+.navbar-expand-lg {
+    margin: 10px; 
+    border-radius: 10px;
+  }
+.bold-text {
+  font-weight: bold;
+}
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-item {
+    color: #474754;
+    font-size: large;
+    
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .nav-link:active,
+.navbar-nav .dropdown-item:active {
+    color: #c9220f; /* Color del texto cuando se pasa el mouse o está activo */
+}

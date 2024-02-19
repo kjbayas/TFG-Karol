@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journals</title>
+    <link href="{{ url_for('static', filename='css/journals.css') }}" rel="stylesheet" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/translation.js') }}"></script>
+
+</head>
+<body>
+    <div id="content-to-translate" >
+        {% include 'sitio/top_of_page.html' %}
+
+        <nav class="navbar rounded-3" >
+            <div class="col-md-12">
+                <div class="centered">
+                    <h1 class="text-center">Journals</h1>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="col-md-12 bg-transparent">
+                    <div class="row" id="card-row">
+                        {% for journal in journals %}
+                        <div class="col-md-2 mb-4 d-flex">
+                            <div class="card flex-grow-1">
+                                <a href="{{ journal[3] }}">
+                                    <img src="{{ url_for('static', filename='archivos/imagenes/' + journal[4]) }}" class="card-img-top" alt="Cover">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title ">
+                                        <span >{{ journal[2] }}</span> 
+                                        <br><br>
+                                        <span > {{ journal[1] }}</span>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+</body>
+    {% include 'sitio/footer.html' %}
+
+</html>
+

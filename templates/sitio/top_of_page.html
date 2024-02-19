@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Architecture website</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js"></script>
+  <link href="{{ url_for('static', filename='css/bootstrap_site.css') }}" rel="stylesheet" crossorigin="anonymous" > 
+  <link href="{{ url_for('static', filename='css/top_of_page.css') }}" rel="stylesheet" crossorigin="anonymous">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script type="text/javascript">
+      function googleTranslateElementInit() {
+          new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+      }
+  </script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-xl rounded-3" >
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav">
+          <a class="nav-item nav-link" title="" href="/">Home</a>
+          <!-- Elemento de menú desplegable "Referencias" -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Referencias
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/sitio/books">Books</a>
+              <a class="dropdown-item" href="/sitio/links">Links</a>
+              <a class="dropdown-item" href="/sitio/journals">Journals</a>
+            </div>
+          </li>
+          <a class="nav-item nav-link" alt="Calendar" href="/sitio/calendar">Calendar</a>
+          {% if 'username' in session %}
+            <a class="nav-item nav-link" href="/admin">Profile</a>
+          {% else %}
+            <a class="nav-item nav-link" href="/admin/login">Login</a>
+          {% endif %}
+        </ul>
+        <div class="nav-item dropdown" id="google_translate_element">
+          <!-- Contenido del elemento de Google Translate -->
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</body>
+</html>

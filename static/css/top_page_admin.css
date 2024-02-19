@@ -1,0 +1,21 @@
+.navbar {
+    margin-top: 10px;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .nav-link:active,
+.navbar-nav .dropdown-item:active {
+    color: rgb(130, 226, 239); /* Color del texto cuando se pasa el mouse o está activo */
+}
+.navbar-expand-lg {
+    margin: 10px; /* Establece el margen deseado */
+    border-radius: 10px;
+  }
+.bold-text {
+  font-weight: bold;
+}
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-item {
+    color: #ffffff  /* Color predeterminado del texto */
+}

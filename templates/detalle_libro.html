@@ -41,23 +41,24 @@
           <!-- Contenedor de 3 filas -->
           <div class="row">
             {% if libro[9] %}
-              {% set col_width = '6' %}
-              <div class="col-md-{{ col_width }} p-5 mb-4 rounded-3 position-relative">
-                  <iframe src="{{ url_for('static', filename='archivos/pdf/' + libro[9]) }}" alt="{{ libro[9] }}" class="h-100 w-100"></iframe>
+              <div class="col-md-12 p-5 mb-4 rounded-3 position-relative d-flex justify-content-center align-items-center">
+                <iframe src="{{ url_for('static', filename='archivos/pdf/' + libro[9]) }}" alt="{{ libro[9] }}" class="embed-responsive-item" style="width: 75%; aspect-ratio: 1 / 1;"></iframe>
               </div>
             {% endif %}
             {% if libro[10] %}
-                <div class="col-md-4 p-5 mb-4 rounded-3 position-relative">
-                    <img src="{{ url_for('static', filename='archivos/imagenes/' + libro[10]) }}" alt="{{ libro[10] }}" class="img-fluid w-100">
-                </div>
+              <div class="col-md-6 p-5 mb-4 rounded-3 position-relative d-flex justify-content-center align-items-center">
+                  <img src="{{ url_for('static', filename='archivos/imagenes/' + libro[10]) }}" alt="{{ libro[10] }}" class="img-fluid w-100">
+              </div>
             {% endif %}   
             {% if libro[8] %}
-                <div class="col-md-4 p-5 mb-4 rounded-3 position-relative">
-                    <video controls class="w-100 h-100">
-                        <source src="{{ url_for('static', filename='archivos/videos/' + libro[8]) }}" type="video/mp4">
-                    </video>
-                </div>
+              <div class="col-md-6 p-5 mb-4 rounded-3 position-relative">
+                <video controls class="w-100 h-100">
+                  <source src="{{ url_for('static', filename='archivos/videos/' + libro[8]) }}" type="video/mp4">
+                </video>
+              </div>
             {% endif %}
+            
+          
           </div>
         </div>
       </div>

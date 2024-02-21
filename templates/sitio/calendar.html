@@ -31,16 +31,16 @@
         <div class="col-md-12 bg-transparent ">
             <div class="custom-card bg-transparent">
                 <div class="row">
-                    <div class="col-md-6 mb-4 text-center ">
+                    <div class="col-md-8 mb-4 text-center ">
                        <h1 class="text-center p-4"> Event List </h1>
-                       <div class="list-group " id="eventList"></div>
+                       <div class="list-group " id="eventList" ></div>
                     </div>
-                    <div class="col-md-6 text-center">
+                    <div class="col-md-4 text-center">
                         <div id="calendar"></div>
                     </div>
                 </div>
-                <div class="col-md-12 mt-4 rounded-3 p-4" id="pastEventsContainer" >
-                    <h1 class="text-center p-5">Past Event</h1>
+                <div class="col-md-12 mt-4 " id="pastEventsContainer" >
+                    <h1 class="text-center ">Past Event</h1>
                     <div id="pastEvents"></div>
                 </div>
             </div>
@@ -177,7 +177,7 @@
                 var eventItem = `
                     <div class="col-md-3">
                         <div class="alert alert-secondary " role="alert">
-                            <div class="text-center" style ="background-color: #000000;color: #ffffff;"><strong>${event.title}</strong></div>
+                            <div class="text-center event-title" ><strong>${event.title}</strong></div>
                             <strong>Start Date:</strong> ${startFormatted}<br>
                             <strong>End Date:</strong> ${endFormatted}<br>
                             <strong>Place or URL:</strong> ${place}
@@ -188,8 +188,6 @@
             pastEventsContainer.append(row);
         });
     }
-
-
 
     // Llama a la función para cargar eventos pasados cuando el DOM esté listo
     $(document).ready(function() {

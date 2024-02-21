@@ -8,7 +8,7 @@ class Config:
     MYSQL_HOST ='192.168.1.14'
     #MYSQL_HOST = 'localhost'
     #MYSQL_HOST = '192.168.1.18'
-    #MYSQL_HOST ='192.168.1.153'
+    #MYSQL_HOST = '10.0.60.183'
     MYSQL_USER = 'karolbayas'
     MYSQL_PASSWORD = 'urjc2023'
     MYSQL_DB = 'sitio'

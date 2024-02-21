@@ -31,8 +31,7 @@
                                 <span style="color: rgb(255, 0, 93); font-weight: bold;">ATTENTION:</span> Before uploading the information, we kindly request that you be careful and attentive to the provided data and that the recommended specifications are met.
                             </li>
                             <li>Sections marked with asterisks are mandatory.</li>
-                            <li>For the cover image, it is recommended to use images of 720 x 775 pixels.</li>
-                            <li>Please verify that the author's first and last name are spelled correctly.</li>
+                            <li>Remember that the image must have an aspect ratio of 1:2.</li>
                         </ul>
                     </div>
                 </div>
@@ -54,7 +53,7 @@
                                 <label for="txtYear" class="form-label fs-4 fw-bold"><span style="color: rgb(199, 17, 17);">**</span>Year:</label>
                                 <select id="txtYear" name="year" class="form-select">
                                     <option value="">Select a year.</option>
-                                    {% for year in range(2024, 1849, -1) %}
+                                    {% for year in range(2024, 1600, -1) %}
                                         <option value="{{ year }}">{{ year }}</option>
                                     {% endfor %}
                                 </select>

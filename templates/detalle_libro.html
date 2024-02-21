@@ -19,11 +19,11 @@
       <div class="p-5 mb-4 rounded-3" style="background-color: rgba(255, 255, 255, 0.9);">
         <h1 class="text-center display-3">{{ libro[1] }}</h1>
         <div class="row">
-          <!-- Contenedor Izquierda -->
+          <!-- Contenedor Izquierda (Cover Book)-->
           <div class="col-md-4 p-0 mb-4 rounded-3 d-flex justify-content-center align-items-center">
             <img src="{{ url_for('static', filename='archivos/imagenes/' + libro[2]) }}" alt="{{ libro[1] }}" class="img-fluid img-cover">
           </div>               
-          <!-- Contenedor Derecha -->
+          <!-- Contenedor Derecha (Detalles)-->
           <div class="col-md-8 p-5 mb-4 rounded-3 border overflow-hidden">
             <p class="lead"><strong class="bold-text">Autor:</strong>  
                 {% for autor in autores %}
@@ -38,10 +38,10 @@
                 <p class="lead"><strong class="bold-text">Description:</strong> {{ libro[7] }}</p>
             {% endif %}
           </div>
-          <!-- Contenedor de 3 filas -->
+          <!-- Contenedor de 3 filas (Documentos extras) -->
           <div class="row">
             {% if libro[9] %}
-              <div class="col-md-12 p-5 mb-4 rounded-3 position-relative d-flex justify-content-center align-items-center">
+              <div class="col-md-6 p-5 mb-4 rounded-3 position-relative d-flex justify-content-center align-items-center">
                 <iframe src="{{ url_for('static', filename='archivos/pdf/' + libro[9]) }}" alt="{{ libro[9] }}" class="embed-responsive-item" style="width: 75%; aspect-ratio: 1 / 1;"></iframe>
               </div>
             {% endif %}
@@ -57,8 +57,6 @@
                 </video>
               </div>
             {% endif %}
-            
-          
           </div>
         </div>
       </div>
@@ -66,9 +64,10 @@
   </div>
   
 
-<!-- ========== Bloque para los comentarios ========== -->
+  <!-- ========== Bloque para los comentarios ========== -->
 
   <div class="container-fluid">
+    <!-- Visualizar comentarios  -->
     <div class="row">
       <div class="col-md-12">
         <div class="p-5 mb-4 rounded-3" style="background-color: rgba(255, 255, 255, 0.9);">
@@ -78,14 +77,20 @@
               {% if comentarios %}
                 <ul class="list-group">
                   {% for comentario in comentarios %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center" >
-                      <span style="color: rgb(53, 104, 143); text-transform: uppercase; font-weight: bold;">{{ comentario[2] }}</span>
-                      <span style="margin: 10px;">{{ comentario[1] }}</span>
-                      <form action="/admin/books/comentarios/{{ comentario[0] }}/eliminar" method="post" style="display: inline;">
-                        <input type="hidden" name="user_id" value="{{ user_id }}">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                      </form>
+                    <li class="list-group-item">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <span style="color: rgb(196, 0, 0); text-transform: uppercase; font-weight: bold;">{{ comentario[2] }}</span>
+                          <span style="margin: 10px; text-transform: uppercase;">{{ comentario[1] }}</span>
+                        </div>
+                        {% if 'username' in session %}
+                          <form action="/admin/books/comentarios/{{ comentario[0] }}/eliminar" method="post" style="display: inline;">
+                            <input type="hidden" name="user_id" value="{{ user_id }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-outline-danger btn-mg">Delete</button>
+                          </form>
+                        {% endif %}
+                      </div>
                     </li>
                   {% endfor %}
                 </ul>
@@ -94,14 +99,17 @@
               {% endif %}
             {% endif %}
           </ul>
-          <!-- Comentarios -->
+          <!-- Colocar Comentarios -->
           <form action="/admin/books/{{ libro[0] }}/comentarios" method="post" class="mt-3">
             <div class="form-group">
-              <label for="comentario">Add comment:</label>
-              <textarea id="comentario" name="comentario" class="form-control" required></textarea>
+                <label for="comentario">Add comment:</label>
+                <textarea id="comentario" name="comentario" class="form-control border" required></textarea>
             </div>
-            <button type="submit" class="btn">Comment</button>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-outline-dark">Comment</button>
+            </div>
           </form>
+        
         </div>
       </div>
     </div>

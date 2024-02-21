@@ -1,10 +1,13 @@
-# docker build -t tfgkarol  
+# docker build -t tfgkarol .
 # docker run -p 8000:5000 tfgkarol
 # http://localhost:8000 
 # Docker account
 #  karoltfg2023@gmail.com
 # jumhosncwxjihlyx
 FROM python:3.8
+
+# Instala nano para la edición de archivos
+RUN apt-get update && apt-get install -y nano
 
 WORKDIR /app
 

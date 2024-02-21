@@ -1,5 +1,3 @@
-{% include 'admin/top_of_page.html' %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,23 +15,26 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3 mb-3">
-                <h1>Reset Password</h1>
-                {% if mensaje %}
-                <div class="alert alert-success">{{ mensaje }}</div>
-                {% endif %}
-            </div>
-            <div class="col-md-6 offset-md-3 mb-3">
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <form method="POST" action="/admin/olvide-contrasena">
-                        <input type="email" name="email" class="form-control" placeholder="Email address" required>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <br>
-                            <button type="submit" class="btn btn-outline-success">Send</button>
-                        </div>
-                    </form>
+    <div class="container-fluid">
+        {% include 'admin/top_of_page.html' %}
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-6 offset-md-3 mb-3 ">
+                    <h1>Reset Password</h1>
+                    {% if mensaje %}
+                    <div class="alert alert-success">{{ mensaje }}</div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 offset-md-3 mb-3">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <form method="POST" action="/admin/olvide-contrasena">
+                            <input type="email" name="email" class="form-control" placeholder="Email address" required>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <br>
+                                <button type="submit" class="btn btn-outline-success">Send</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -37,8 +37,8 @@ body {
 }
 
 .card:hover {
-    background-color: #ec676780; /* Cambiar al color deseado cuando se hace hover */
-    border: 1px solid #ffffff; /* Cambiar al color deseado cuando se hace hover */
+    background-color: #a2010161; /* Cambiar al color  cuando se hace hover */
+    border: 1px solid #ffffff; /* Cambiar al color  cuando se hace hover */
 }
 
 .card-link {

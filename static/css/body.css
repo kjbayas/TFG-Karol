@@ -1,4 +1,7 @@
 
+.body{
+    font-family: 'Courier New', Courier, monospace;
+}
 .custom-card {
     background-color: rgba(255, 255, 255, 0.897);
     padding: 20px;
@@ -23,8 +26,8 @@
 
 
 #calendar .fc-event {
-    background-color: #867a83;
-    border-color: #574f8d;
+    background-color: #51061192;
+    border-color: #910723;
 }
 
 /* Estilos para los días en el calendario */
@@ -33,22 +36,53 @@
 }
 /* Estilo para el fondo de la fila del encabezado */
 #calendar .fc-head {
-    background-color: #d5d7f0; /* Cambia el fondo de la fila del encabezado a blanco */
+    background-color: #000000df; /* Cambia el fondo de la fila del encabezado a blanco */
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10%;
 }
 #calendar .fc-center h2{
-    color: rgb(9, 9, 64);
-    font-size: 30px;
+    color: rgb(24, 2, 3);
+    font-size: 20px;
     font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #calendar .fc-left button{
-    color: rgb(62, 24, 37);
-    font-size: 15px;
+    color: rgb(223, 18, 18);
+    font-size: 10px;
     text-transform: uppercase;
 }
 #calendar .fc-right button{
-    color: rgb(62, 24, 37);
-    font-size: 15px;
+    color: rgb(223, 18, 18);
+    font-size: 10px;
     text-transform: uppercase;
 }
+
+.list-group-item.active {
+    background-color: #000408; /* Cabecera de event list */
+}
+
+.list-group-item{
+    color: #120000c5;
+
+}
+.list-group-item-success{
+    background-color: #ee090957;
+}
+
+.event-title {
+    background-color: #000000c5;
+    color: #ffffff;
+    padding: 2%;
+}
+
+h1  {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    color: #000000;
+}
+
+
+
 

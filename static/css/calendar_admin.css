@@ -7,18 +7,18 @@ body{
 }
 
 .fc-event {
-    background-color: #4b4981; /* Cambia esto al color que desees */
-    color: #fff; /* Cambia esto al color del texto que desees */
-    border-color: #4b4981; /* Cambia esto al color del borde que desees */
+    background-color: #108c75; 
+    color: #fff; 
+    border-color: #49815e; 
     font-family: Arial, Helvetica, sans-serif;
 }
 .fc-day {
-    background-color: #313d4624; /* Cambia esto al color que desees */
-    color: #fff; /* Cambia esto al color del texto que desees */
+    background-color: #f4f2f0d2; 
+    color: #fff; 
 }
 .fc-widget-header {
-    background-color: #30292a25; /* Cambia esto al color que desees */
-    color: #fff; /* Cambia esto al color del texto que desees */
+    background-color: #000000fe; 
+    color: #fff; 
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -31,16 +31,17 @@ body{
 
 /* Cambiar el color del texto del título del mes */
 .fc-center h2 {
-    color: #04359d; /* Cambia esto al color que desees */
+    color: #000000; 
     font-family: 'Courier New', bold;
+
 }
 
 .container-fluid {
-    padding: 20px; /* Agrega un relleno al contenedor fluido */
+    padding: 20px; 
 }
 
 .border-rounded {
-    border: 2px solid #0a0b58;
+    border: 2px solid #580a0d;
     border-radius: 8px;
     padding: 15px;
     margin: 10px 0;
@@ -50,9 +51,30 @@ body{
     margin-bottom: 15px;
 }
 .green-background {
-    background-color: #28a745; /* Cambia el color verde a tu preferencia */
-    color: #fff; /* Cambia el color del texto para que sea legible en el fondo verde */
+    background-color: #28a3a7; 
+    color: #fff; 
+}
+.list-group-item.active {
+
+    background-color: #120512;
+    border: #000000;
+}
+
+.delete-event-button{
+    background-color: #000000db;
+    color: #f1ebeb;
+    border-color: #000000;
 }
 
 
+#calendar .fc-left button{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    text-transform: uppercase;
+}
+#calendar .fc-right button{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    text-transform: uppercase;
+}
 

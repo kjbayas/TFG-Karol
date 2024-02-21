@@ -78,6 +78,11 @@ def admin_registro():
             cur.execute(query, (username, password, email, 1))
         mysql.connection.commit()
 
+        # Enviar correo de confirmación
+        msg = Message('Confirmación de registro', sender='karoltfg2023@gmail.com', recipients=[email])
+        msg.body = f'Hola {username}, ¡gracias por registrarte en nuestra web! Espera a que tu administrador te de acceso a la plataforma'
+        mail.send(msg)
+
         return redirect('/admin/login')  # Registro OK Redirigir al inicio 
 
     return render_template('admin/registro.html')

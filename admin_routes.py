@@ -7,6 +7,7 @@ import os, random, string
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
+# simplifica la ejecución y recuperación de resultados de consultas SQL en Flask y MySQL.
 def execute_query(query, *args):
     with mysql.connection.cursor() as cur:
         cur.execute(query, args)
@@ -26,6 +27,7 @@ def admin_login_cerrar():
     session.clear()
     return redirect('/admin/login')
 
+# maneja el inicio de sesión de administradores, verificando las credenciales y redireccionando según el rol y el estado del usuario.
 @admin_bp.route('/login', methods=['POST'])
 def admin_login_post():
     try:
@@ -54,7 +56,8 @@ def admin_login_post():
         flash('Error fetching data from database', 'error')
         print(f"Error fetching data from database: {e}")
         return redirect('/admin/login')
-    
+
+# manejo del registro de administradores, verificando la disponibilidad de username, email antes de guardar datos y enviar un correo de confirmación.
 @admin_bp.route('/registro', methods=['GET', 'POST'])
 def admin_registro():
     if request.method == 'POST':
@@ -143,7 +146,7 @@ def olvide_contrasena():
 
     return render_template('admin/olvide_contrasena.html')
 
-# Restablecer la contraseña
+# Restablecer la contraseña, verifica token en dB y actualiza contrseña si token es valido y elimina el token, salta error si token no es valido
 @admin_bp.route('/restablecer-contrasena/<token>', methods=['GET', 'POST'])
 def restablecer_contrasena(token):
     if request.method == 'POST':
@@ -176,12 +179,12 @@ def restablecer_contrasena(token):
 
     return render_template('admin/restablecer_contrasena.html', token=token)
 
+# muestra el calendario de eventos, maneja los errores de conexión y verifica los permisos del administrador.
 @admin_bp.route('/calendar')
 @login_required
 def admin_calendar():
     try:
         id_rol = session.get('id_rol', 0)  
-
         if id_rol == 0:
             tiene_permiso = False
         elif id_rol == 1 or id_rol == 2:
@@ -208,7 +211,7 @@ def admin_calendar():
         print(f"Error fetching data from database: {e}")
         return render_template('admin/calendar.html', calendar=[])
     
-
+# muestra los libros y autores disponibles, maneja los permisos de usuario y maneja errores de conexión.
 @admin_bp.route('/books')
 @login_required
 def admin_books():
@@ -251,21 +254,21 @@ def admin_books():
         print(f"Error fetching data from database: {e}")
         return render_template('admin/books.html', libros=[], autores=[])
 
-
+# guardar archivos que cumplen condiciones de extenciones en la carpeta, nos devuelve el nombre del archivo si es ok 
 def guardar_archivo(archivo, carpeta_destino):
     if archivo.filename == '':
         return None  
     
     extension_permitida = ['pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4']
-    if '.' not in archivo.filename or archivo.filename.rsplit('.', 1)[1].lower() not in extension_permitida:        return None  
-    
+    if '.' not in archivo.filename or archivo.filename.rsplit('.', 1)[1].lower() not in extension_permitida:        
+        return None  
     nombre_archivo = secure_filename(archivo.filename)
     ruta_guardado = os.path.join(carpeta_destino, nombre_archivo)
     print("Intentando guardar archivo en:", ruta_guardado)
     archivo.save(ruta_guardado)
     
     return nombre_archivo
-
+# guarda libros, y detalles de estos verificando la existencia de los autores que no se repitan, maneja errores 
 @admin_bp.route('/books/guardar', methods=['POST'])
 def admin_libros_guardar():
     mensaje_error = None
@@ -330,6 +333,8 @@ def admin_libros_guardar():
         mensaje_error = 'Error performing database operation.'
         return render_template('admin/books.html', mensaje_error=mensaje_error)
 
+
+# Eliminar libros y todos los datos asociado a estos
 @admin_bp.route('/books/delete', methods=['POST'])
 def admin_books_delete():
     # Check for authorization
@@ -352,7 +357,7 @@ def admin_books_delete():
         print(f"Error deleting book: {e}")
         return redirect('/admin/books')
 
-
+# Permisos de usuarios, permite agregar nuevos usuarios con roles y revisar si el usuario actual es un administrado
 @admin_bp.route('/permisos', methods=['GET', 'POST'])
 def admin_permisos():
     if request.method == 'POST':
@@ -380,6 +385,7 @@ def admin_permisos():
     # Redirigir a la página anterior si no se cumple el requisito
     return redirect(request.referrer or '/')
 
+# Modificar los permisos de los usuarios 
 @admin_bp.route('/permisos/editar', methods=['POST'])
 def admin_permisos_editar():
     if not 'login' in session:
@@ -398,6 +404,7 @@ def admin_permisos_editar():
 
     return redirect('/admin/permisos')
 
+#elimina permisos de usuarios 
 @admin_bp.route('/permisos/eliminar/<int:id_permiso>', methods=['GET'])
 def admin_permisos_eliminar(id_permiso):
     if not 'login' in session:
@@ -411,6 +418,7 @@ def admin_permisos_eliminar(id_permiso):
 
     return redirect('/admin/permisos')
 
+#acepta permisos de usuarios 
 @admin_bp.route('/permisos/aceptar/<int:id_permiso>', methods=['POST'])
 def admin_permisos_aceptar(id_permiso):
     if not 'login' in session:
@@ -424,6 +432,7 @@ def admin_permisos_aceptar(id_permiso):
 
     return redirect('/admin/permisos')
 
+#añadir comentarios si existe user_id 
 @admin_bp.route('/books/<int:libro_id>/comentarios', methods=['POST'])
 def agregar_comentario(libro_id):
     try:
@@ -444,7 +453,7 @@ def agregar_comentario(libro_id):
         print(f"Error en agregar_comentario: {e}")
         return render_template('error.html', error_message='Error al agregar comentario', back_url=request.referrer or '/')
 
-
+#eliminar comentarios  
 @admin_bp.route('/books/comentarios/<int:comentario_id>/eliminar', methods=['POST', 'DELETE'])
 def eliminar_comentario(comentario_id):
     user_id = session.get('id')

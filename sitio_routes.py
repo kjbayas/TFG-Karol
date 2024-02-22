@@ -5,6 +5,7 @@ from config import mysql
 
 sitio_bp = Blueprint('sitio', __name__, url_prefix='/sitio')
 
+# Ruta para mostrar la lista de libros
 @sitio_bp.route('/books')
 def books():
     try:
@@ -59,7 +60,7 @@ def buscar_libros():
     return render_template('sitio/books.html', libros=libros, autores=autores)
 
 
-
+# Ruta para mostrar la lista de eventos 
 @sitio_bp.route('/calendar')
 def calendar():
     tiene_permiso = False
@@ -73,6 +74,8 @@ def calendar():
     
     return render_template('sitio/calendar.html', calendar=calendar, tiene_permiso=tiene_permiso)
 
+
+# Ruta para mostrar la lista de links
 @sitio_bp.route('/links')
 def links():
     try:
@@ -84,6 +87,7 @@ def links():
         links = []
     return render_template('sitio/links.html', links=links)
 
+""" Esta funcion está pensada para que se pueda ver detalles de los links por si quiere ampliar 
 @sitio_bp.route('/links/<int:link_id>')
 def link_detail(link_id):
     try:
@@ -93,7 +97,10 @@ def link_detail(link_id):
     except Exception as e:
         print(f"Error fetching data from database: {e}")
         link = None
-    return render_template('sitio/link_detail.html', link=link)
+    return render_template('sitio/link_detail.html', link=link) 
+    
+"""
+# Ruta para mostrar la lista de revistas
 
 @sitio_bp.route('/journals')
 def journals():

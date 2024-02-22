@@ -19,16 +19,16 @@
 
 <body>
   <nav class="navbar navbar-expand-xl navbar-dark bg-dark rounded-3">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    <div class="container-fluid ">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-        <div class="navbar-nav">
+        <div class="navbar-nav ">
           {% if 'username' in session %}
             <a class="nav-link active" href="/admin/">Home</a>
-            <a class="nav-link" href="books">Books</a>
+            <a class="nav-link " href="books">Books</a>
             <a class="nav-link" href="links">Links</a>
             <a class="nav-link" href="journals">Revistas</a>
             <a class="nav-link" href="calendar">Calendar</a>
@@ -42,9 +42,7 @@
           {% endif %}
         </div>
       </div>
-      <div class="nav-item dropdown" id="google_translate_element">
-
-      </div>
+      <div class="nav-item dropdown ms-auto" id="google_translate_element" ></div>
     </div>
   </nav>
 </body>

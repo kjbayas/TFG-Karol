@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ url_for('static', filename='css/permisos.css') }}" rel="stylesheet" crossorigin="anonymous">
-    <title>Books</title>
+    <title>Permisos</title>
 </head>
 
 <body>
@@ -16,69 +16,69 @@
             <div class="card-header">
                 <h1 class="text-center">INSTRUCTIONS</h1>
                 <p>
-                    This administration panel provides a centralized and secure interface for the administrator to efficiently and controlledly perform these actions. 
+                    This administration panel provides a centralized and secure interface for the administrator to efficiently and controlledly perform these actions.
                     This ensures the integrity and security of the system while facilitating the management and administration of users and resources.
                 </p>
-                <ul class="list-unstyled">
-                    <li>"Professor" with a value of 2.</li>
-                    <li>"Student" with a value of 0. </li>
-                    <li>"Administrator" with a value of 1.</li>
-
-                </ul>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered">
-                        <thead class="table-header">
-                            <tr>
-                                <th scope="col">USERNAME</th>
-                                <th scope="col">EMAIL</th>
-                                <th scope="col">ID_ROL</th>
-                                <th scope="col">Delete</th>
-                                <th scope="col">ACCESS</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            {% for permiso in permisos %}
-                            <tr>
-                                <td class="username">{{ permiso[1] }}</td>
-                                <td class="email">{{ permiso[3] }}</td>
-                                <td class="form-cell">
-                                    <form method="POST" action="/admin/permisos/editar">
-                                        <select name="id_rol">                                        
-                                            <option value="0" {% if permiso[4] == 0 %}selected {% endif %}>0</option>
-                                            <option value="1" {% if permiso[4] == 1 %}selected {% endif %}>1</option>
-                                            <option value="2" {% if permiso[4] == 2 %}selected {% endif %}>2</option>
-                                        </select>
-                                        <input type="hidden" name="id" value="{{ permiso[0] }}">
-                                        <input type="hidden" name="password" value="{{ permiso[2] }}">
-                                        <input type="hidden" name="username" value="{{ permiso[1] }}">
-                                        <input type="hidden" name="registro_pendiente" value="{{ permiso[5] }}">
-                                        <button type="submit" class="btn btn-warning " style="border-radius: 5px">Save</button>
-                                    </form>
-                                </td>
-                                <td class="button-cell">
-                                    <form method="GET" action="/admin/permisos/eliminar/{{ permiso[0] }}">
-                                        <button type="submit"class="btn btn-danger" style="border-radius: 5px">Delete</button>
-                                    </form>
-                                </td>
-                                <td class="button-cell">
-                                    {% if permiso[5] == 1 %}
-                                        <form method="POST" action="/admin/permisos/aceptar/{{ permiso[0] }}">
-                                            <button type="submit" class="btn btn-success">Accept</button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-header">
+                                <tr>
+                                    <th scope="col">USERNAME</th>
+                                    <th scope="col">EMAIL</th>
+                                    <th scope="col">ID_ROL</th>
+                                    <th scope="col">Delete</th>
+                                    <th scope="col">ACCESS</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                {% for permiso in permisos %}
+                                <tr>
+                                    <td class="username">{{ permiso[1] }}</td>
+                                    <td class="email">{{ permiso[3] }}</td>
+                                    <td class="form-cell ">
+                                        <form method="POST" action="/admin/permisos/editar">
+                                            <select name="id_rol" class="form-control">
+                                                <option value="0" {% if permiso[4] == 0 %}selected {% endif %}>Student</option>
+                                                <option value="1" {% if permiso[4] == 1 %}selected {% endif %}>Administrator</option>
+                                                <option value="2" {% if permiso[4] == 2 %}selected {% endif %}>Professor</option>
+                                            </select>
+                                            <input type="hidden" name="id" value="{{ permiso[0] }}">
+                                            <input type="hidden" name="password" value="{{ permiso[2] }}">
+                                            <input type="hidden" name="username" value="{{ permiso[1] }}">
+                                            <input type="hidden" name="registro_pendiente" value="{{ permiso[5] }}">
+                                            <button type="submit" class="btn btn-warning mt-2">Save</button>
                                         </form>
-                                    {% else %}
-                                        Accepted
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    
+                                    </td>
+                                    <td class="button-cell">
+                                        <form method="GET" action="/admin/permisos/eliminar/{{ permiso[0] }}">
+                                            <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                                        </form>
+                                    </td>
+                                    <td class="button-cell">
+                                        {% if permiso[5] == 1 %}
+                                            <form method="POST" action="/admin/permisos/aceptar/{{ permiso[0] }}">
+                                                <button type="submit" class="btn btn-success mt-2">Accept</button>
+                                            </form>
+                                        {% else %}
+                                            Accepted
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

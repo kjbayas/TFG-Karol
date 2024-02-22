@@ -16,16 +16,6 @@ mail.init_app(app)
 # Definir la configuración de sesión para mayor seguridad
 app.secret_key = os.urandom(24)
 
-
-# Decorador para verificar la sesión
-def login_required(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if 'login' not in session:
-            return redirect('/admin/login')
-        return func(*args, **kwargs)
-    return wrapper
-
 @app.route('/')
 def index():
     return render_template('sitio/index.html')
@@ -126,7 +116,7 @@ def ajax_delete():
         print(f'Error al eliminar el evento: {e}')
         return jsonify({'status': 'error', 'message': f'Error: {e}'})
 
-
+# Rutas de sitio y admin
 app.register_blueprint(admin_bp)
 app.register_blueprint(sitio_bp)
 

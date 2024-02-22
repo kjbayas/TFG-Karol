@@ -25,25 +25,27 @@
           </div>               
           <!-- Contenedor Derecha (Detalles)-->
           <div class="col-md-8 p-5 mb-4 rounded-3 border overflow-hidden">
-            <p class="lead"><strong class="bold-text">Autor:</strong>  
+            <p class="card-text"><strong class="bold-text">Autor:</strong>  
                 {% for autor in autores %}
                     {% if libro[6] == autor[0] %}
                         {{ autor[1] }} {{ autor[2] }}  <br>
                     {% endif %}
                 {% endfor %}
             </p>
-            <p class="lead"><strong class="bold-text">Year:</strong> {{ libro[4] }}</p>
-            <p class="lead"><strong class="bold-text">URL:</strong> <a href="{{ libro[3] }}" target="_blank">{{ libro[1] }}</a></p>
+            <p class="card-text"><strong class="bold-text">Year:</strong> {{ libro[4] }}</p>
+            <p class="card-text"><strong class="bold-text">URL:</strong> <a href="{{ libro[3] }}" target="_blank">{{ libro[1] }}</a></p>
             {% if libro[7] %}
-                <p class="lead"><strong class="bold-text">Description:</strong> {{ libro[7] }}</p>
+                <p class="card-text"><strong class="bold-text">Description:</strong> {{ libro[7] }}</p>
             {% endif %}
           </div>
           <!-- Contenedor de 3 filas (Documentos extras) -->
           <div class="row">
             {% if libro[9] %}
-              <div class="col-md-6 p-5 mb-4 rounded-3 position-relative d-flex justify-content-center align-items-center">
-                <iframe src="{{ url_for('static', filename='archivos/pdf/' + libro[9]) }}" alt="{{ libro[9] }}" class="embed-responsive-item" style="width: 75%; aspect-ratio: 1 / 1;"></iframe>
-              </div>
+              <div class="col-md-6 p-5 mb-4 rounded-3 position-relative">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe src="{{ url_for('static', filename='archivos/pdf/' + libro[9]) }}" class="embed-responsive-item" style="width: 100%; aspect-ratio: 3 / 4;"></iframe>
+                </div>
+              </div>       
             {% endif %}
             {% if libro[10] %}
               <div class="col-md-6 p-5 mb-4 rounded-3 position-relative d-flex justify-content-center align-items-center">
@@ -62,57 +64,55 @@
       </div>
     </div>
   </div>
-  
-
   <!-- ========== Bloque para los comentarios ========== -->
 
   <div class="container-fluid">
     <!-- Visualizar comentarios  -->
     <div class="row">
-        <div class="col-md-12">
-            <div class="p-5 mb-4 rounded-3" style="background-color: rgba(255, 255, 255, 0.9);">
-                <h2 class="text-center">Comentarios</h2>
+      <div class="col-md-12">
+        <div class="p-5 mb-4 rounded-3" style="background-color: rgba(255, 255, 255, 0.9);">
+          <h2 class="text-center">Comentarios</h2>
+          <ul class="list-group">
+            {% if user_id is not none %}
+              {% if comentarios %}
                 <ul class="list-group">
-                    {% if user_id is not none %}
-                        {% if comentarios %}
-                            <ul class="list-group">
-                                {% for comentario in comentarios %}
-                                    <li class="list-group-item">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <span style="color: rgb(196, 0, 0); text-transform: uppercase; font-weight: bold;">{{ comentario[2] }}</span>
-                                                <span style="margin: 10px; text-transform: uppercase;">{{ comentario[1] }}</span>
-                                            </div>
-                                            {% if 'username' in session and session['username'] == comentario[2] or 'id_rol' in session and session['id_rol'] == 1 %}
-                                                <form action="/admin/books/comentarios/{{ comentario[0] }}/eliminar" method="post" style="display: inline;">
-                                                    <input type="hidden" name="user_id" value="{{ user_id }}">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-outline-danger btn-mg">Delete</button>
-                                                </form>
-                                            {% endif %}
-                                        </div>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <p>No hay comentarios disponibles.</p>
-                        {% endif %}
-                    {% endif %}
+                  {% for comentario in comentarios %}
+                    <li class="list-group-item">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <span class="fw-bold text-danger">{{ comentario[2]|upper }}</span>
+                          <span class="ms-2 text-uppercase">{{ comentario[1]|upper }}</span>
+                        </div>
+                          {% if 'username' in session and session['username'] == comentario[2] or 'id_rol' in session and session['id_rol'] == 1 %}
+                            <form action="/admin/books/comentarios/{{ comentario[0] }}/eliminar" method="post" class="ms-2">
+                              <input type="hidden" name="user_id" value="{{ user_id }}">
+                              <input type="hidden" name="_method" value="DELETE">
+                              <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                          {% endif %}
+                      </div>
+                    </li>
+                  {% endfor %}
                 </ul>
-                <!-- Colocar Comentarios -->
-                <form action="/admin/books/{{ libro[0] }}/comentarios" method="post" class="mt-3">
-                    <div class="form-group">
-                        <label for="comentario">Add comment:</label>
-                        <textarea id="comentario" name="comentario" class="form-control border" required></textarea>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-outline-dark">Comment</button>
-                    </div>
-                </form>
+              {% else %}
+                <p>No hay comentarios disponibles.</p>
+              {% endif %}
+            {% endif %}
+          </ul>
+          <!-- Colocar Comentarios -->
+          <form action="/admin/books/{{ libro[0] }}/comentarios" method="post" class="mt-3">
+            <div class="form-group">
+              <label for="comentario">Add comment:</label>
+              <textarea id="comentario" name="comentario" class="form-control border" required></textarea>
             </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-outline-dark">Comment</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
 
 

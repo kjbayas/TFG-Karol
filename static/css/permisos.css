@@ -1,13 +1,14 @@
+
 .table-header {
-    background-color: #ec959500; 
+    background-color: #000000; 
     font-weight: bold; 
     border-top: 15px;
-
+    text-align: center;
+    color: white; 
 }
 
 .table-header th {
     padding: 20px; 
-    font-size: 30px;
     text-align: center;
 }
 
@@ -15,6 +16,7 @@
     padding: 8px; 
     font-size: 14px; 
     background-color: #333333;
+    text-align: center;
 }
 
 .form-cell form {
@@ -43,6 +45,7 @@
     height: 100%;
     width: 100%; 
 }
-
-
+.form-cell select option {
+    text-align: center;
+}
 

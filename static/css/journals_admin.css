@@ -1,0 +1,23 @@
+.thead-dark {
+    background-color: #0000008c;
+    color: aliceblue;
+}
+.text-right {
+    text-align: right;
+
+}
+.text-right button{
+    border-radius: 10%;
+}
+@media (max-width: 576px) {
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    .table {
+        width: auto;
+    }
+}

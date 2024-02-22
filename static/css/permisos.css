@@ -1,0 +1,48 @@
+.table-header {
+    background-color: #ec959500; 
+    font-weight: bold; 
+    border-top: 15px;
+
+}
+
+.table-header th {
+    padding: 20px; 
+    font-size: 30px;
+    text-align: center;
+}
+
+.form-cell {
+    padding: 8px; 
+    font-size: 14px; 
+    background-color: #333333;
+}
+
+.form-cell form {
+    margin: 0; 
+}
+
+.form-cell select {
+    background-color: #f2f2f2;
+    color: #333333;
+    border: 1px solid #cccccc;
+    padding: 8px;
+}
+
+.form-cell button {
+    margin-left: 10px; 
+}
+.button-cell {
+    padding: 10px;
+}
+
+.button-cell form {
+    margin: 0; 
+}
+
+.button-cell button {
+    height: 100%;
+    width: 100%; 
+}
+
+
+

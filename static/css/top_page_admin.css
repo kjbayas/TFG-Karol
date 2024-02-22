@@ -6,10 +6,10 @@
 .navbar-nav .dropdown-item:hover,
 .navbar-nav .nav-link:active,
 .navbar-nav .dropdown-item:active {
-    color: rgb(130, 226, 239); /* Color del texto cuando se pasa el mouse o está activo */
+    color: rgb(130, 226, 239); 
 }
 .navbar-expand-lg {
-    margin: 10px; /* Establece el margen deseado */
+    margin: 10px; 
     border-radius: 10px;
   }
 .bold-text {
@@ -17,5 +17,5 @@
 }
 .navbar-nav .nav-link,
 .navbar-nav .dropdown-item {
-    color: #ffffff  /* Color predeterminado del texto */
+    color: #ffffff  
 }

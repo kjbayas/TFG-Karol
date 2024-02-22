@@ -37,17 +37,17 @@ body {
 }
 
 .card:hover {
-    background-color: #a2010161; /* Cambiar al color  cuando se hace hover */
-    border: 1px solid #ffffff; /* Cambiar al color  cuando se hace hover */
+    background-color: #a2010161; 
+    border: 1px solid #ffffff;
 }
 
 .card-link {
-    text-decoration: none; /* Elimina el subrayado del enlace */
+    text-decoration: none; 
 }
 
 
 .centered h1 {
-    font-size: 80px; /* Tamaño de la fuente */
-    font-family: 'Courier New', Courier, monospace, sans-serif; /* Tipo de fuente */
+    font-size: 80px; 
+    font-family: 'Courier New', Courier, monospace, sans-serif; 
     color: rgb(110, 64, 60);
 }

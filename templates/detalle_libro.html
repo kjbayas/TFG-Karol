@@ -69,51 +69,51 @@
   <div class="container-fluid">
     <!-- Visualizar comentarios  -->
     <div class="row">
-      <div class="col-md-12">
-        <div class="p-5 mb-4 rounded-3" style="background-color: rgba(255, 255, 255, 0.9);">
-          <h2 class="text-center">Comentarios</h2>
-          <ul class="list-group">
-            {% if user_id is not none %}
-              {% if comentarios %}
+        <div class="col-md-12">
+            <div class="p-5 mb-4 rounded-3" style="background-color: rgba(255, 255, 255, 0.9);">
+                <h2 class="text-center">Comentarios</h2>
                 <ul class="list-group">
-                  {% for comentario in comentarios %}
-                    <li class="list-group-item">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                          <span style="color: rgb(196, 0, 0); text-transform: uppercase; font-weight: bold;">{{ comentario[2] }}</span>
-                          <span style="margin: 10px; text-transform: uppercase;">{{ comentario[1] }}</span>
-                        </div>
-                        {% if 'username' in session %}
-                          <form action="/admin/books/comentarios/{{ comentario[0] }}/eliminar" method="post" style="display: inline;">
-                            <input type="hidden" name="user_id" value="{{ user_id }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-outline-danger btn-mg">Delete</button>
-                          </form>
+                    {% if user_id is not none %}
+                        {% if comentarios %}
+                            <ul class="list-group">
+                                {% for comentario in comentarios %}
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span style="color: rgb(196, 0, 0); text-transform: uppercase; font-weight: bold;">{{ comentario[2] }}</span>
+                                                <span style="margin: 10px; text-transform: uppercase;">{{ comentario[1] }}</span>
+                                            </div>
+                                            {% if 'username' in session and session['username'] == comentario[2] or 'id_rol' in session and session['id_rol'] == 1 %}
+                                                <form action="/admin/books/comentarios/{{ comentario[0] }}/eliminar" method="post" style="display: inline;">
+                                                    <input type="hidden" name="user_id" value="{{ user_id }}">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-outline-danger btn-mg">Delete</button>
+                                                </form>
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No hay comentarios disponibles.</p>
                         {% endif %}
-                      </div>
-                    </li>
-                  {% endfor %}
+                    {% endif %}
                 </ul>
-              {% else %}
-                <p>No hay comentarios disponibles.</p>
-              {% endif %}
-            {% endif %}
-          </ul>
-          <!-- Colocar Comentarios -->
-          <form action="/admin/books/{{ libro[0] }}/comentarios" method="post" class="mt-3">
-            <div class="form-group">
-                <label for="comentario">Add comment:</label>
-                <textarea id="comentario" name="comentario" class="form-control border" required></textarea>
+                <!-- Colocar Comentarios -->
+                <form action="/admin/books/{{ libro[0] }}/comentarios" method="post" class="mt-3">
+                    <div class="form-group">
+                        <label for="comentario">Add comment:</label>
+                        <textarea id="comentario" name="comentario" class="form-control border" required></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-outline-dark">Comment</button>
+                    </div>
+                </form>
             </div>
-            <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-outline-dark">Comment</button>
-            </div>
-          </form>
-        
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
 
 
   {% endblock %}

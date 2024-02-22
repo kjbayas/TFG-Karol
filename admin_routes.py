@@ -71,6 +71,13 @@ def admin_registro():
 
             if existing_user:  # Usuario ya existe en la base de datos, salta error y cierra la conexion
                 return render_template('admin/registro.html', error='USERNAME not valid')
+        with mysql.connection.cursor() as cur:
+            query = "SELECT id FROM login WHERE email = %s"
+            cur.execute(query, (email,))
+            existing_email = cur.fetchone()
+
+            if existing_email:  # Correo electrónico ya en uso, salta error y cierra la conexion
+                return render_template('admin/registro.html', error='El correo electrónico ya está registrado')
 
         # Guardar los datos en la base de datos
         with mysql.connection.cursor() as cur:

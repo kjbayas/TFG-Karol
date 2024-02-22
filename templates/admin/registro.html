@@ -14,58 +14,72 @@
   </div>
 
   <div class="container">
-
     <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <br>
-  
-        {% if mensaje %}
-        <div class="alert alert-danger" role="alert">
-          <strong>{{ mensaje }}</strong>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <br>
+            {% if mensaje %}
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ mensaje }}</strong>
+            </div>
+            {% endif %}
+
+            <div class="card">
+                <div class="card-body">
+                    <form id="registrationForm" action="/admin/registro" method="post" onsubmit="return validateForm()">
+                        <h3 class="text-center">User Registration</h3>
+
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ error }}</strong>
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label for="txtUsuario" class="form-label">Username</label>
+                            <input type="text" class="form-control" name="txtUsuario" id="txtUsuario" aria-describedby="helpId"
+                                placeholder="Username">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="txtPassword" id="txtPassword"
+                                aria-describedby="helpId" placeholder="Password">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtEmail" class="form-label">Email</label>
+                            <input type="text" class="form-control" name="txtEmail" id="txtEmail" aria-describedby="helpId"
+                                placeholder="Email">
+                            <input type="hidden" name="destinatario" value="karoltfg2023@gmail.com">
+                        </div>
+
+                        <div style="display: flex; justify-content: center; ">
+                            <button type="submit" class="btn btn-dark">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        {% endif %}
-  
-        <div class="card">
-          <div class="card-body">
-            <form action="/admin/registro" method="post">
-              <h3 class="text-center">User Registration</h3>
-  
-              {% if error %}
-              <div class="alert alert-danger" role="alert">
-                <strong>{{ error }}</strong>
-              </div>
-              {% endif %}
-  
-              <div class="mb-3">
-                <label for="txtUsuario" class="form-label">Username</label>
-                <input type="text" class="form-control" name="txtUsuario" id="txtUsuario" aria-describedby="helpId"
-                  placeholder="Username">
-              </div>
-  
-              <div class="mb-3">
-                <label for="txtPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" name="txtPassword" id="txtPassword"
-                  aria-describedby="helpId" placeholder="Password">
-              </div>
-  
-              <div class="mb-3">
-                <label for="txtEmail" class="form-label">Email</label>
-                <input type="text" class="form-control" name="txtEmail" id="txtEmail" aria-describedby="helpId"
-                  placeholder="Email">
-                <input type="hidden" name="destinatario" value="karoltfg2023@gmail.com">
-              </div>
-  
-              <div style="display: flex; justify-content: center; ">
-                <button type="submit" class="btn btn-dark">Sign Up</button>
-              </div>
-  
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
     </div>
-  </div>
+</div>
+
+<script>
+    function validateForm() {
+        var username = document.getElementById('txtUsuario').value;
+        var password = document.getElementById('txtPassword').value;
+        var email = document.getElementById('txtEmail').value;
+
+        if (username.trim() == '' || password.trim() == '' || email.trim() == '') {
+            alert('Please fill out all fields');
+            return false; 
+        }
+
+        return true; 
+    }
+</script>
+
   
 
 
